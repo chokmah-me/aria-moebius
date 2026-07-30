@@ -8,10 +8,10 @@ authors:
     orcid: "https://orcid.org/0000-0002-9040-6914"
     affiliation: "Chokmah LLC"
 date-released: "2026-07-30"
-version: "1.0.0"
+version: "1.0.1"
 license: CC-BY-4.0
-doi: "10.5281/zenodo.21705940"
-url: "https://doi.org/10.5281/zenodo.21705940"
+doi: "10.5281/zenodo.21710669"
+url: "https://doi.org/10.5281/zenodo.21710669"
 repository-code: "https://github.com/chokmah-me/aria-moebius"
 keywords:
   - ARIA

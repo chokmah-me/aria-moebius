@@ -210,7 +210,7 @@ The Mobius Bridge is a fact about the class of S-boxes that factor as an affine 
 
 ## Data and code availability
 
-`verify_bridge_class.py` reproduces every numeric claim above: the class identity across all eight Frobenius exponents, the four ARIA-shaped rows, the exponent facts, the bad-index locations and failure counts, and the fingerprint invariance. Pure Python 3, no dependencies, deterministic apart from seeded draws, exit code 0 iff all five checks pass. Archived run and provenance metadata in `results/`. Lean sources in `AriaMobius.lean` and `Bridge.lean`. Repository: `https://github.com/chokmah-me/aria-moebius`. Paper (Zenodo concept DOI, always latest): https://doi.org/10.5281/zenodo.21705468. Software: https://doi.org/10.5281/zenodo.21705940. Version-specific paper DOIs are recorded in the repository file `ZENODO.md`.
+`verify_bridge_class.py` reproduces every numeric claim above: the class identity across all eight Frobenius exponents, the four ARIA-shaped rows, the exponent facts, the bad-index locations and failure counts, and the fingerprint invariance. Pure Python 3, no dependencies, deterministic apart from seeded draws, exit code 0 iff all five checks pass. Archived run and provenance metadata in `results/`. Lean sources in `AriaMobius.lean` and `Bridge.lean`. Repository: `https://github.com/chokmah-me/aria-moebius`. Paper (Zenodo concept DOI, always latest): https://doi.org/10.5281/zenodo.21705468. Software (concept, always latest): https://doi.org/10.5281/zenodo.21705939. Version-specific DOIs are recorded in the repository file `ZENODO.md`.
 
 ## AI utilization statement
 

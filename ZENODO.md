@@ -7,7 +7,8 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 | **Paper concept** | [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) | **Stable.** Always resolves to the latest paper PDF. |
 | **Paper (current version)** | [10.5281/zenodo.21710366](https://doi.org/10.5281/zenodo.21710366) | Current PDF-only deposit (`ARIA-Moebius-v1-REL.pdf`). |
 | **Software concept** | [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939) | Always latest software zip. |
-| **Software (current version)** | [10.5281/zenodo.21705940](https://doi.org/10.5281/zenodo.21705940) | From GitHub Release `v1.0.0`. |
+| **Software (current version)** | [10.5281/zenodo.21710669](https://doi.org/10.5281/zenodo.21710669) | From GitHub Release `v1.0.1`. |
+| **Software (superseded)** | [10.5281/zenodo.21705940](https://doi.org/10.5281/zenodo.21705940) | GitHub Release `v1.0.0` zip. |
 
 ## Paper version history (superseded rows)
 
@@ -21,7 +22,7 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 ## External links
 
 - **GitHub:** https://github.com/chokmah-me/aria-moebius  
-- **Release:** https://github.com/chokmah-me/aria-moebius/releases/tag/v1.0.0  
+- **Release:** https://github.com/chokmah-me/aria-moebius/releases/tag/v1.0.1  
 - **OSF:** https://osf.io/wy8db/ (DOI 10.17605/OSF.IO/WY8DB)  
 - **Catalog:** https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/  
   (URL path fragment is historical; page content cites concept `…468` and version `…366`.)
@@ -35,7 +36,7 @@ https://doi.org/10.5281/zenodo.21705468 (concept); https://doi.org/10.5281/zenod
 
 **Software:**
 
-Bilar, D. Y. (2026). *aria-moebius: Lean formalization and class-bridge verifier* (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.21705940
+Bilar, D. Y. (2026). *aria-moebius: Lean formalization and class-bridge verifier* (v1.0.1). Zenodo. https://doi.org/10.5281/zenodo.21710669
 
 No attack complexities for ARIA are claimed.
 

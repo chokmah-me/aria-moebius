@@ -1,6 +1,12 @@
 # Changelog
 
-## v1.0.3 -- 2026-07-30 -- Zenodo version `…366` (concept-only PDF body)
+## v1.0.1 software -- 2026-07-30 -- GitHub + Zenodo software
+
+GitHub Release `v1.0.1` → Zenodo software version DOI
+`10.5281/zenodo.21710669` (concept still `10.5281/zenodo.21705939`).
+Supersedes software `…940` (v1.0.0).
+
+## v1.0.3 paper -- 2026-07-30 -- Zenodo version `…366` (concept-only PDF body)
 
 Current paper **version** DOI: `10.5281/zenodo.21710366`.  
 Concept (in paper body; always latest): `10.5281/zenodo.21705468`.

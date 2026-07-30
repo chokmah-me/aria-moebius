@@ -66,8 +66,9 @@ what linearizes the bridge action.
 - Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
 - **Paper concept DOI (prefer for citation):** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) — always latest PDF
 - **Paper version DOI (this PDF):** [10.5281/zenodo.21710366](https://doi.org/10.5281/zenodo.21710366) (v1.0.3)
-- **Software DOI (this repo, GitHub `v1.0.0`):** [10.5281/zenodo.21705940](https://doi.org/10.5281/zenodo.21705940)
-- **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases/tag/v1.0.0
+- **Software DOI (this repo, GitHub `v1.0.1`):** [10.5281/zenodo.21710669](https://doi.org/10.5281/zenodo.21710669)
+- **Software concept DOI:** [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939)
+- **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases/tag/v1.0.1
 - **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
 - **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/) — path fragment is historical; page cites concept `…468` / PDF version `…366`
 
@@ -98,10 +99,10 @@ Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software
   author       = {Bilar, Daniyel Yaacov},
   title        = {aria-moebius: Lean formalization and class-bridge verifier},
   year         = {2026},
-  version      = {v1.0.0},
+  version      = {v1.0.1},
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.21705940},
-  url          = {https://doi.org/10.5281/zenodo.21705940}
+  doi          = {10.5281/zenodo.21710669},
+  url          = {https://doi.org/10.5281/zenodo.21710669}
 }
 ```
 
