@@ -20,7 +20,6 @@ what a complexity claim would first require.
 | Path | Role |
 |---|---|
 | `PAPER_ARIA_MOBIUS_DRAFT_v3.md` | Paper draft (current) |
-| `PAPER_ARIA_MOBIUS_DRAFT_v2.md` | Superseded draft (record only) |
 | `verify_bridge_class.py` | Exhaustive GF(2^8) checks (pure Python 3, no deps) |
 | `verify_aria_bridge.py` | Legacy pre-reciprocal verifier (superseded) |
 | `Bridge.lean` | Lean 4 formalization of the class bridge and affine invariance |
@@ -55,11 +54,10 @@ Both `AriaMobius.lean` and `Bridge.lean` build clean. Axiom set: `propext`,
 
 ## Superseded
 
-`verify_aria_bridge.py` and `PAPER_ARIA_MOBIUS_DRAFT_v2.md` are retained for the
-record. v2 concluded that power-sum fingerprints do not transfer to ARIA. That
-conclusion was wrong: it tested the pre-reciprocal multiset, where the action is
-fractional-linear rather than affine. The reciprocal and change of variable to
-`d^-1` is what linearizes it. See `CHANGELOG.md`.
+`verify_aria_bridge.py` remains as a legacy pre-reciprocal script only. Earlier
+paper drafts (v1 REL, v2) are **removed** from the tree; the v2 retraction is
+recorded in `CHANGELOG.md`. The reciprocal and change of variable to `d^-1` is
+what linearizes the bridge action.
 
 ## License
 
