@@ -64,12 +64,12 @@ what linearizes the bridge action.
 
 - Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
 - **Paper concept DOI (prefer for citation):** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) — always latest PDF
-- **Paper version DOI (this PDF):** [10.5281/zenodo.21710366](https://doi.org/10.5281/zenodo.21710366) (v1.0.3)
-- **Software DOI (this repo, GitHub `v1.0.1`):** [10.5281/zenodo.21710669](https://doi.org/10.5281/zenodo.21710669)
+- **Paper version DOI (this PDF):** [10.5281/zenodo.21710821](https://doi.org/10.5281/zenodo.21710821) (v1.0.4)
 - **Software concept DOI:** [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939)
-- **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases/tag/v1.0.1
+- **Software version DOI:** [10.5281/zenodo.21710669](https://doi.org/10.5281/zenodo.21710669) (advances with GH releases)
+- **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases
 - **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
-- **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/) — path fragment is historical; page cites concept `…468` / PDF version `…366`
+- **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/) — path fragment historical; page cites concept `…468` / PDF version `…821`
 
 Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software DOI zip). Superseded paper DOIs and the post-mint grep guard: `ZENODO.md`, `scripts/check_doi_consistency.ps1`.
 
@@ -83,11 +83,11 @@ Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software
   title        = {Mobius Bridges for the Invert-and-Affine S-box Class,
                   with the Four ARIA Instantiations},
   year         = {2026},
-  version      = {1.0.3},
+  version      = {1.0.4},
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.21705468},
   url          = {https://doi.org/10.5281/zenodo.21705468},
-  note         = {Concept DOI (always latest). Pinned PDF: 10.5281/zenodo.21710366}
+  note         = {Concept DOI (always latest). Pinned PDF: 10.5281/zenodo.21710821}
 }
 ```
 

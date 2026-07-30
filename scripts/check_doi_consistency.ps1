@@ -21,7 +21,8 @@ param(
 $SupersededIds = @(
     "21705469",  # first paper mint
     "21705738",  # v1.0.1 pre-errata
-    "21706741"   # errata upload; PDF self-DOI still lagged
+    "21706741",  # errata upload; PDF self-DOI still lagged
+    "21710366"   # pre-published-ARIA-constants PDF
 )
 
 # Paths (repo-relative, forward slashes) where superseded IDs may still appear.
@@ -29,10 +30,10 @@ $Allowlist = @(
     "ZENODO.md",
     "CHANGELOG.md",
     "scripts/check_doi_consistency.ps1",
-    "SEARCH-META.html"  # catalog slug note only; do not publish abstract_html_url until re-pointed
+    "SEARCH-META.html"
 )
 
-$CurrentVersionId = "21710366"
+$CurrentVersionId = "21710821"
 $ConceptId = "21705468"
 
 Set-Location $RepoRoot
