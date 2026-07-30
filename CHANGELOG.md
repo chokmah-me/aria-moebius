@@ -1,92 +1,57 @@
 # Changelog
 
-All notable changes to this project are documented in this file.
+## v3 -- 2026-07-30 -- scientific pivot: negative result retracted
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project uses informal date-based versions until a public release is
-tagged.
+**The v2 thesis was wrong and is withdrawn.**
 
-## [Unreleased]
+v2 claimed that power-sum ratio fingerprints do not transfer from the AES Mobius
+Bridge to ARIA, and that the residual symmetry is the unipotent subgroup of order
+256 in `PGL(2, GF(2^8))` rather than `AGL(1, 256)`. The error was a coordinate
+choice. The residual action was derived in the pre-reciprocal variable `e`, where
+it is fractional-linear. Nasr and Carlini reciprocate and reparametrize to `d^-1`,
+where the same action is affine. Power-sum invariants work there, and the ratio
+form `I(m,n) = P_m^n / P_n^m` is exactly theirs.
 
-### Planned
+Consequences:
 
-- Full paper rewrite around the class theorem (draft still has retracted framing).
+- The `AGL(1, 256)` statement in the v1 draft was correct. The v2 "correction" to
+  `PGL(2)` was wrong and is withdrawn.
+- v2 Theorem 3.5 (the power-sum dichotomy) and its Table 1 are withdrawn. They
+  evaluated the invariant on the pre-reciprocal multiset.
+- v2 criticisms that stand: the v1 ratio form `P_{m+n}/Q_{m+n}` was wrong; the v1
+  bridge identity `g = s d + s` was wrong (correct: `g = s^2 d^-1 + s`); there is
+  no Bai-Yu 7-round ARIA-128 attack to use as a baseline; the `2^8.6` per-element
+  cost is AES-specific engineering.
+- v2 criticisms withdrawn: the `chi` off-by-one (256 bins for 255 elements is
+  correct) and the `gcd(m,255)=1` complaint (it is needed).
 
-## [0.3.0] - 2026-07-30
+**New in v3.** The class bridge theorem: every S-box of the form
+`L2 . Frob^j . inv . L1` admits an affine bridge with `beta = L1(s)^(2^j)` and
+`alpha = beta^2`. ARIA instantiates four members at `j = 0, 3, 0, 5`. The bad
+indices sit at `{L1^-1(0), s}`, not `{0, s}`; for ARIA's inverse S-boxes these are
+the affine constants, and the failure there is total (255 of 255 reference values),
+not a corner case.
 
-Class-theorem verifier and Lean bridge addendum; priority search archived.
+**Superseded artifacts.** `verify_aria_bridge.py` is replaced by
+`verify_bridge_class.py`. Its checks 1-3 (field identities, key-action
+homomorphism, the pre-reciprocal map is not a scaling) remain true; check 4 (the
+power-sum dichotomy) is withdrawn as a refutation.
 
-### Added
+**Two computational errors caught during v3 development**, recorded rather than
+removed. First, an entropy measurement drew 255-element multisets by sampling
+without replacement from the 255 nonzero field elements, which yields the whole
+multiplicative group every time and makes every power sum vanish; real delta-set
+difference sequences are drawn with replacement. Second, a log/antilog table was
+built with 2 as the generator, which does not generate `GF(2^8)*` under this
+modulus; 3 does. Both produced results that looked clean (a single "invariant"
+value that was in fact a set containing only `None`). Both are now guarded by
+assertions in `verify_bridge_class.py`.
 
-- `verify_bridge_class.py` — primary suite (class + four ARIA maps + exponents +
-  bad indices + \(I_{m,n}\)); archived `results/verify_bridge_class_out.txt`.
-- `Bridge.lean` — `bridge_identity`, `bridge_frobenius`, `P_affine`,
-  `J_affine_invariant`, `aria_exponents`, `aria_S2inv_exponent`; Lake target
-  `Bridge`.
-- `results/priority_search_log.md` — no ARIA/Camellia/CLEFIA/SM4 Bridge ports
-  found (NC paper 2026-07-28).
+## v2 -- 2026-07-29
 
-### Changed
+Negative result. Retracted; see v3.
 
-- README holds class-theorem spine; documents supersession of pre-reciprocal
-  verifier conclusions.
-- Cut vacuous `bridge_alpha_eq_beta_sq` / theorem-shaped `example`; exponents
-  recorded as `def aria_exponents`.
+## v1
 
-### Notes
-
-- `verify_aria_bridge.py` retained as **legacy** (pre-reciprocal multiset). Its
-  “fingerprints do not transfer” reading is retracted; the script remains for
-  audit only.
-- No attack parameters / entropy campaign in this tag.
-
-## [0.2.0] - 2026-07-30
-
-Lean formalization complete against Lean 4.32.2 / Mathlib v4.32.2; verification
-artifacts archived; project docs.
-
-### Added
-
-- Lake project: `lakefile.toml`, `lean-toolchain`, `lake-manifest.json`, `.gitignore`.
-- Mathlib dependency pinned at **v4.32.2** (toolchain **leanprover/lean4:v4.32.2**).
-- Archived Python run under `results/` (`verify_aria_bridge_out.txt`, meta JSON).
-- Lean build and axiom audit under `results/` (`lake_build_final.txt`, `axiom_audit.txt`).
-- Expanded README (setup, status table, paper ↔ Lean map).
-- `CHANGELOG.md` (Keep a Changelog style).
-
-### Changed
-
-- `AriaMobius.lean` updated for current Mathlib module paths and APIs
-  (e.g. matrix notation under `LinearAlgebra.Matrix`, BigOperators layout).
-- Difference-map statements take `[CharP F 2]` where the ARIA/XOR form
-  \(e/(v^2 + v e)\) is used.
-- Header status: skeleton with open `sorry` → fully proved.
-
-### Fixed / proved
-
-- Closed all Appendix A.5 obligations:
-  - `mobiusKey_not_affine` (Cor 3.1.1)
-  - `crossRatio_diffMap_invariant` (Prop 3.6)
-  - `frobenius8_add` (Prop 4.1 additivity)
-- Remaining algebraic proofs adjusted so `lake build` succeeds with only
-  standard axioms (`propext`, `Classical.choice`, `Quot.sound`).
-
-### Verified
-
-- `python verify_aria_bridge.py` → **5/5** checks, exit 0 (seed 5785).
-- `lake build` → success, **no `sorry`** in declarations.
-
-## [0.1.0] - 2026-07-29
-
-Initial public draft of the repository.
-
-### Added
-
-- Paper draft: `PAPER_ARIA_MOBIUS_DRAFT_v2.md`.
-- Computational verification script: `verify_aria_bridge.py`.
-- Lean skeleton: `AriaMobius.lean` (designed statements; not yet compiled;
-  three deliberate `sorry`s per Appendix A.5).
-
-[Unreleased]: https://github.com/chokmah-me/aria-moebius/compare/d5f9b23...HEAD
-[0.2.0]: https://github.com/chokmah-me/aria-moebius/compare/81e1dec...d5f9b23
-[0.1.0]: https://github.com/chokmah-me/aria-moebius/tree/81e1dec
+Machine-generated draft with attack parameter sheets for 7-round ARIA-128 and
+8-round ARIA-256. Withdrawn: garbled bridge identity, nonexistent baseline.

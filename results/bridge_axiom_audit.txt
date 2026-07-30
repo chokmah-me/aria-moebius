@@ -1,10 +1,8 @@
-Bridge.lean + verify_bridge_class.py audit
-=========================================
-date_utc: 2026-07-30T12:04:01.4506511Z
-python: verify_bridge_class.py exit 0, 5/5 (see verify_bridge_class_out.txt)
-lake build Bridge: success
-
-Lean axioms from lake_build_bridge.txt:
+v3 import audit
+date_utc: 2026-07-30T14:24:09.5638280Z
+python: 5/5 exit 0
+lake build: success
+Bridge axioms: propext / Classical.choice / Quot.sound only
 info: AriaMobius.lean:388:0: 'AriaMobius.diffMap_not_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: AriaMobius.lean:389:0: 'AriaMobius.mobiusKey_not_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: AriaMobius.lean:390:0: 'AriaMobius.J_smul_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -13,9 +11,9 @@ info: AriaMobius.lean:392:0: 'AriaMobius.draft_ratio_eq_scalar' depends on axiom
 info: AriaMobius.lean:393:0: 'AriaMobius.crossRatio_diffMap_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: AriaMobius.lean:394:0: 'AriaMobius.pow_247_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: AriaMobius.lean:395:0: 'AriaMobius.frobenius8_add' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: Bridge.lean:156:0: 'AriaMobius.bridge_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: Bridge.lean:157:0: 'AriaMobius.bridge_frobenius' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: Bridge.lean:158:0: 'AriaMobius.P_affine' depends on axioms: [propext, Quot.sound]
-info: Bridge.lean:159:0: 'AriaMobius.J_affine_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: Bridge.lean:160:0: 'AriaMobius.aria_S2inv_exponent' depends on axioms: [propext, Classical.choice, Quot.sound]
-Build completed successfully (2016 jobs).
+info: Bridge.lean:145:0: 'AriaMobius.bridge_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:146:0: 'AriaMobius.bridge_frobenius' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:147:0: 'AriaMobius.P_affine' depends on axioms: [propext, Quot.sound]
+info: Bridge.lean:148:0: 'AriaMobius.J_affine_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:149:0: 'AriaMobius.aria_S2inv_exponent' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2017 jobs).

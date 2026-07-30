@@ -217,6 +217,7 @@ def aria_variants(rng):
     """The four maps of ARIA's substitution layer, as members of the class."""
     A = rand_affine(rng, const=0x63)      # stands for ARIA's A (S1 affine part)
     B = rand_affine(rng, const=0x5A)      # stands for ARIA's B (S2 affine part)
+    Ainv = Affine([0] * 8, 0)             # placeholder, rebuilt below
     # S1  = A . inv                       -> L1 = id,        j=0, L2 = A
     # S2  = B . Frob^3 . inv              -> L1 = id,        j=3, L2 = B
     # S1^-1 = inv . A^-1                  -> L1 = A^-1,      j=0, L2 = id
@@ -236,7 +237,7 @@ def check_aria(variants):
     for name, L1, j, L2 in variants:
         ok &= bridge_check(name, L1, j, L2)
         ok &= kappa_cancels(L1, j, L2)
-    print("    key byte kappa cancels in every case: OK")
+    print(f"    key byte kappa cancels in every case: OK")
     return ok
 
 
@@ -257,6 +258,7 @@ def check_bad_index_location(variants):
     for name, L1, j, L2 in variants:
         z = L1.bwd[0]
         S = make_sbox(L1, j, L2)
+        # the identity must fail at a_w = z for at least one s, and hold elsewhere
         fails = 0
         total = 0
         for s in range(1, 256):
@@ -302,7 +304,7 @@ def check_invariant(variants, rng):
             ok &= good
             if (m, n) == (7, 11):
                 print(f"    {name:<12} m,n=({m},{n}): {len(vals)} distinct over"
-                      f" keys with t!=0, matches offline: {offline in vals}")
+                      f" 255 keys, matches offline: {offline in vals}")
     print(f"    all four variants x four exponent pairs: {'OK' if ok else 'FAIL'}")
     return ok
 

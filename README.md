@@ -23,10 +23,10 @@ what a complexity claim would first require.
 | `PAPER_ARIA_MOBIUS_DRAFT_v2.md` | Superseded draft (record only) |
 | `verify_bridge_class.py` | Exhaustive GF(2^8) checks (pure Python 3, no deps) |
 | `verify_aria_bridge.py` | Legacy pre-reciprocal verifier (superseded) |
-| `Bridge.lean` | Lean 4: class bridge, affine invariance, ARIA exponents |
-| `AriaMobius.lean` | Lean 4: preliminaries and pre-reciprocal geometry |
+| `Bridge.lean` | Lean 4 formalization of the class bridge and affine invariance |
+| `AriaMobius.lean` | Lean 4, preliminaries and pre-reciprocal geometry |
 | `lakefile.toml`, `lean-toolchain`, `lake-manifest.json` | Lean **4.32.2**, Mathlib **v4.32.2** |
-| `results/` | Archived runs, build logs, axiom audit, priority search |
+| `results/` | Archived runs, build logs, axiom audit |
 | `CHANGELOG.md` | Version history, including the v2 retraction |
 
 ## Verification
@@ -39,10 +39,8 @@ python verify_bridge_class.py
 Five checks: the class identity across all eight Frobenius exponents against
 random affine bijections; the four ARIA instantiations; the exponent facts
 `x^247 = (x^-1)^8` and `x^223 = (x^-1)^32`; the bad-index locations and failure
-counts; and invariance of the power-sum ratio `I(m,n)` across key values.
-Deterministic apart from seeded draws of the affine maps (seed **5785**).
-
-Archived run: [`results/verify_bridge_class_out.txt`](results/verify_bridge_class_out.txt).
+counts; and invariance of the power-sum ratio `I(m,n)` across all 255 key values.
+Deterministic apart from seeded draws of the affine maps.
 
 ## Lean
 
@@ -51,10 +49,9 @@ lake exe cache get
 lake build
 ```
 
-Both `AriaMobius.lean` and `Bridge.lean` build clean. Axiom set:
-`propext`, `Classical.choice`, `Quot.sound` only (no `native_decide`). See
-[`results/lake_build_bridge.txt`](results/lake_build_bridge.txt) and
-[`results/bridge_axiom_audit.txt`](results/bridge_axiom_audit.txt).
+Both `AriaMobius.lean` and `Bridge.lean` build clean. Axiom set: `propext`,
+`Classical.choice`, `Quot.sound` only (no `native_decide`). See
+`results/lake_build_bridge.txt` and `results/bridge_axiom_audit.txt`.
 
 ## Superseded
 
@@ -67,5 +64,3 @@ fractional-linear rather than affine. The reciprocal and change of variable to
 ## License
 
 CC BY 4.0.
-
-Repository: https://github.com/chokmah-me/aria-moebius

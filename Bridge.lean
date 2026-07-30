@@ -4,9 +4,7 @@
   Formalization accompanying "Mobius Bridges for the Invert-and-Affine S-box
   Class" (D. Y. Bilar, Chokmah LLC).
 
-  STATUS: compiled against AriaMobius.lean / Lean 4.32.2 / Mathlib v4.32.2.
-  Expect `field_simp` normal-form drift and possible lemma renames around
-  `iterateFrobenius` on other pins.
+  STATUS: builds against AriaMobius.lean / Lean 4.32.2 / Mathlib v4.32.2.
 
   WHY THIS FILE EXISTS
   --------------------
@@ -54,8 +52,7 @@ is what an S-box of the form `L₂ ∘ Frob^j ∘ inv ∘ L₁` does -- preserve
 affine shape and raises both parameters to the `2^j`.
 
 The relation `α = β²` is a property of each instantiation
-(`β = t^{2^j}`, `α = β²`), not a bare field identity, so it is not stated as a
-separate theorem here. -/
+(`β = t^{2^j}`, `α = β²`), not a bare field identity. -/
 theorem bridge_frobenius (j : ℕ) (v e : F) (hv : v ≠ 0) (he : e ≠ 0)
     (hve : v + e ≠ 0) :
     ((diffMap v e) ^ (2 ^ j))⁻¹
@@ -74,8 +71,7 @@ end Bridge
 /-! ## 2. Affine invariance of the power-sum ratio
 
 `AriaMobius.P_smul` covers `v ↦ s * v`. The action that actually occurs is
-`v ↦ α * v + β`. The translation cancels inside every pairwise difference, so
-the same homogeneity holds -- but that step is what was missing. -/
+`v ↦ α * v + β`. The translation cancels inside every pairwise difference. -/
 
 section AffineInvariance
 variable {F : Type*} [Field F] [CharP F 2] {ι : Type*}
@@ -96,9 +92,8 @@ theorem P_affine (T : Finset (ι × ι)) (d : ι → F) (α β : F) (m : ℕ) :
       _ = α * (d p.1 + d p.2) := by ring
   rw [this, mul_pow]
 
-/-- **The fingerprint is invariant under the bridge action.** This is the
-Nasr-Carlini `I_{m,n}`, stated over an arbitrary field of characteristic 2 and
-for the full affine action rather than a scaling. -/
+/-- **The fingerprint is invariant under the bridge action.** Nasr–Carlini
+`I_{m,n}` over an arbitrary field of characteristic 2 and the full affine action. -/
 theorem J_affine_invariant (T : Finset (ι × ι)) (d : ι → F) (α β : F)
     (hα : α ≠ 0) (m n : ℕ) (_hn : P T d n ≠ 0) :
     J T (fun i => α * d i + β) m n = J T d m n := by
@@ -112,29 +107,23 @@ end AffineInvariance
 
 /-! ## 3. ARIA's four substitution-layer maps
 
-Each is a member of the class with a specific Frobenius exponent `j`. The affine
-maps `L₁, L₂` only relabel which variable is fed in, so the content is the
-exponent; `bridge_frobenius` covers all four uniformly. -/
+Each is a member of the class with a specific Frobenius exponent `j`. -/
 
 section AriaVariants
 
 /-- Frobenius exponents for ARIA's four substitution-layer maps:
 `S1`, `S2`, `S1⁻¹`, `S2⁻¹` use `j = 0, 3, 0, 5` respectively. -/
 def aria_exponents : Fin 4 → ℕ
-  | 0 => 0  -- S1
-  | 1 => 3  -- S2
-  | 2 => 0  -- S1⁻¹
-  | 3 => 5  -- S2⁻¹
+  | 0 => 0
+  | 1 => 3
+  | 2 => 0
+  | 3 => 5
 
-/-- `S2` is `Frobenius^3` of an inverse. Already in `AriaMobius` as
-`pow_247_eq`; restated to sit beside its `S2⁻¹` partner. -/
 theorem aria_S2_exponent (x : GF256) (hx : x ≠ 0) : x ^ 247 = (x⁻¹) ^ 8 :=
   pow_247_eq x hx
 
-/-- `247 * 223 = 1 (mod 255)`, so `223` inverts the `S2` exponent. -/
 theorem aria_S2_exponent_inverse : (247 * 223) % 255 = 1 := by norm_num
 
-/-- `S2⁻¹` is `Frobenius^5` of an inverse: `223 = 255 - 32`. -/
 theorem aria_S2inv_exponent (x : GF256) (hx : x ≠ 0) : x ^ 223 = (x⁻¹) ^ 32 := by
   have h255 : x ^ 255 = 1 := by
     have := FiniteField.pow_card_sub_one_eq_one x hx

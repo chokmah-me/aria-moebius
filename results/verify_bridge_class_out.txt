@@ -31,10 +31,10 @@ GF(2^8) mod 0x11B, seed 5785
     ARIA S2^-1   L1^-1(0) = 0x5a   identity fails there for 254 of 254 reference values
 
 [5] I(m,n) = P_m^n / P_n^m invariance under the bridge action
-    ARIA S1      m,n=(7,11): 1 distinct over keys with t!=0, matches offline: True
-    ARIA S2      m,n=(7,11): 1 distinct over keys with t!=0, matches offline: True
-    ARIA S1^-1   m,n=(7,11): 1 distinct over keys with t!=0, matches offline: True
-    ARIA S2^-1   m,n=(7,11): 1 distinct over keys with t!=0, matches offline: True
+    ARIA S1      m,n=(7,11): 1 distinct over 255 keys, matches offline: True
+    ARIA S2      m,n=(7,11): 1 distinct over 255 keys, matches offline: True
+    ARIA S1^-1   m,n=(7,11): 1 distinct over 255 keys, matches offline: True
+    ARIA S2^-1   m,n=(7,11): 1 distinct over 255 keys, matches offline: True
     all four variants x four exponent pairs: OK
 
 5/5 checks passed.
