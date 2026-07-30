@@ -1,105 +1,71 @@
 # aria-moebius
 
-Machine-checked algebra and computational checks for **Möbius bridges on the
-invert-and-affine S-box class**, with ARIA’s four substitution-layer maps as
-instances.
+Formalization and computational checks for
+*[Mobius Bridges for the Invert-and-Affine S-box Class, with the Four ARIA
+Instantiations](PAPER_ARIA_MOBIUS_DRAFT_v3.md)* (D. Y. Bilar, Chokmah LLC).
 
-Author: D. Y. Bilar, Chokmah LLC.  
-Upstream: [Nasr–Carlini, *Cryptanalysis of 7-Round AES via the Algebraic
-Structure of its S-box*](https://www.anthropic.com/document/aes_mobius_bridge.pdf)
-(2026-07-28).
+The Mobius Bridge of Nasr and Carlini is not specific to the AES S-box. It holds
+for every S-box of the form `L2 . Frob^j . inv . L1` with `L1`, `L2` GF(2)-affine
+bijections, with the Frobenius exponent `j` as the only degree of freedom. AES is
+the case `j = 0`, `L1 = id`. ARIA instantiates four members of the class at once
+(`S1`, `S2`, `S1^-1`, `S2^-1`, at `j = 0, 3, 0, 5`), each with a different offline
+multiset, and its two inverse S-boxes move the bad indices from `0` to the affine
+constants, so the published bad-index treatment does not port unchanged.
 
-**No attack complexities for ARIA are claimed.** This repo ships the *class
-bridge* (identity + affine fingerprint invariance + bad-index locus), not a
-MitM parameter sheet.
-
-## Claim
-
-Any S-box of the form
-
-```text
-S = L2 ∘ Frob^j ∘ inv ∘ L1
-```
-
-where `L1`, `L2` are GF(2)-affine bijections, `Frob(x) = x²`, and `inv(0) := 0`,
-admits an **AGL(1)** bridge after the Nasr–Carlini reciprocal reparametrization:
-
-```text
-t     = L1(s)
-β     = t^(2^j)
-α     = β²
-D     = (L1_lin(d))^(-2^j)
-g     = α · D  ⊕  β
-```
-
-Bad indices (where `inv(0) := 0` breaks the identity) are
-
-```text
-{ L1⁻¹(0),  s }
-```
-
-not always `{0, s}`. ARIA instantiates four members with Frobenius exponents
-
-```text
-j ∈ {0, 3, 0, 5}    for    S1, S2, S1⁻¹, S2⁻¹
-```
-
-Priority search (2026-07-30): no public Bridge port to ARIA/Camellia/CLEFIA/SM4
-— see [`results/priority_search_log.md`](results/priority_search_log.md).
+**No attack complexities for ARIA are claimed.** See section 7 of the paper for
+what a complexity claim would first require.
 
 ## Contents
 
 | Path | Role |
 |---|---|
-| `verify_bridge_class.py` | **Primary** verifier: class + four ARIA maps + exponents + bad indices + `I(m,n)` |
-| `verify_aria_bridge.py` | **Legacy** pre-reciprocal script (superseded; kept for audit) |
-| `AriaMobius.lean` | Base Lean module (field lemmas, intermediate chart geometry) |
-| `Bridge.lean` | Addendum: `bridge_identity`, `bridge_frobenius`, `P_affine`, `J_affine_invariant`, ARIA exponents |
-| `lakefile.toml`, `lean-toolchain`, `lake-manifest.json` | Lean **4.32.2** / Mathlib **v4.32.2** |
-| `PAPER_ARIA_MOBIUS_DRAFT_v2.md` | Draft text (**stale negative framing** — rewrite pending) |
-| `results/` | Archived verifier output, Lean builds, priority search |
-| `CHANGELOG.md` | History |
+| `PAPER_ARIA_MOBIUS_DRAFT_v3.md` | Paper draft (current) |
+| `PAPER_ARIA_MOBIUS_DRAFT_v2.md` | Superseded draft (record only) |
+| `verify_bridge_class.py` | Exhaustive GF(2^8) checks (pure Python 3, no deps) |
+| `verify_aria_bridge.py` | Legacy pre-reciprocal verifier (superseded) |
+| `Bridge.lean` | Lean 4: class bridge, affine invariance, ARIA exponents |
+| `AriaMobius.lean` | Lean 4: preliminaries and pre-reciprocal geometry |
+| `lakefile.toml`, `lean-toolchain`, `lake-manifest.json` | Lean **4.32.2**, Mathlib **v4.32.2** |
+| `results/` | Archived runs, build logs, axiom audit, priority search |
+| `CHANGELOG.md` | Version history, including the v2 retraction |
 
-## Python (class theorem)
+## Verification
 
 ```powershell
 python verify_bridge_class.py
+# exit 0 iff all five checks pass
 ```
 
-- Pure Python 3, no deps; seed **5785**; exit **0** iff 5/5.
-- Archived: [`results/verify_bridge_class_out.txt`](results/verify_bridge_class_out.txt)
+Five checks: the class identity across all eight Frobenius exponents against
+random affine bijections; the four ARIA instantiations; the exponent facts
+`x^247 = (x^-1)^8` and `x^223 = (x^-1)^32`; the bad-index locations and failure
+counts; and invariance of the power-sum ratio `I(m,n)` across key values.
+Deterministic apart from seeded draws of the affine maps (seed **5785**).
 
-Checks: (1) class over all 8 Frobenius exponents × 3 random affine pairs;
-(2) four ARIA maps; (3) `x^247 = (x⁻¹)^8`, `247·223 ≡ 1 (mod 255)`,
-`x^223 = (x⁻¹)^32`; (4) bad indices at `L1⁻¹(0)`; (5) `I(m,n)` invariant
-under the bridge action.
+Archived run: [`results/verify_bridge_class_out.txt`](results/verify_bridge_class_out.txt).
 
-## Lean 4 / Mathlib
+## Lean
 
 ```powershell
-# elan: https://lean-lang.org/install/
 lake exe cache get
-lake build          # AriaMobius + Bridge
+lake build
 ```
 
-| Module | Status |
-|---|---|
-| `AriaMobius.lean` | Builds; intermediate pre-reciprocal geometry + Frobenius facts |
-| `Bridge.lean` | Builds; load-bearing bridge + affine `P`/`J` + S2⁻¹ exponent |
+Both `AriaMobius.lean` and `Bridge.lean` build clean. Axiom set:
+`propext`, `Classical.choice`, `Quot.sound` only (no `native_decide`). See
+[`results/lake_build_bridge.txt`](results/lake_build_bridge.txt) and
+[`results/bridge_axiom_audit.txt`](results/bridge_axiom_audit.txt).
 
-Axioms (both modules): `propext`, `Classical.choice`, `Quot.sound` only.
-See [`results/lake_build_bridge.txt`](results/lake_build_bridge.txt).
+## Superseded
 
-Load-bearing for the note: `bridge_identity`, `bridge_frobenius`, `P_affine`,
-`J_affine_invariant`, `aria_S2inv_exponent` / `pow_247_eq`. Intermediate
-(pre-reciprocal chart): `diffMap_not_scaling`, `crossRatio_*`, `U_*`.
+`verify_aria_bridge.py` and `PAPER_ARIA_MOBIUS_DRAFT_v2.md` are retained for the
+record. v2 concluded that power-sum fingerprints do not transfer to ARIA. That
+conclusion was wrong: it tested the pre-reciprocal multiset, where the action is
+fractional-linear rather than affine. The reciprocal and change of variable to
+`d^-1` is what linearizes it. See `CHANGELOG.md`.
 
 ## License
 
-Paper draft: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-Code accompanies the note unless a separate license is added.
+CC BY 4.0.
 
-## Citation
-
-Repository: https://github.com/chokmah-me/aria-moebius  
-DOI: TODO (Zenodo not yet minted).
+Repository: https://github.com/chokmah-me/aria-moebius
