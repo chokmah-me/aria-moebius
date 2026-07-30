@@ -43,10 +43,13 @@ variable, not a property of ARIA. The reciprocal + reparametrization step above
 is what linearizes the action. See CHANGELOG.
 
 Deterministic apart from seeded draws of the affine maps. Pure Python 3, no
-dependencies. Exit code 0 iff every check passes.
+dependencies. Exit code 0 iff every check passes. Typical runtime: a few
+seconds under CPython 3.11+ on a laptop (see results/verify_bridge_class_meta.json).
 """
+import platform
 import random
 import sys
+import time
 
 MOD = 0x11B          # AES/ARIA field polynomial x^8+x^4+x^3+x+1
 SEED = 5785
@@ -214,10 +217,20 @@ def check_class(rng):
 
 
 def aria_variants(rng):
-    """The four maps of ARIA's substitution layer, as members of the class."""
-    A = rand_affine(rng, const=0x63)      # stands for ARIA's A (S1 affine part)
-    B = rand_affine(rng, const=0x5A)      # stands for ARIA's B (S2 affine part)
-    Ainv = Affine([0] * 8, 0)             # placeholder, rebuilt below
+    """ARIA-shaped class members: published exponents/placement, random linear parts.
+
+    Linear parts of A and B are random (not ARIA's published matrices). Only the
+    additive constants are fixed, so that L1^{-1}(0) for the inverse-shape rows
+    lands at a nonzero affine constant as in Table 1.
+
+    Constants:
+      0x63 — ARIA S1 / AES affine constant (Kwon et al., ICISC 2003 / FIPS 197).
+      0x5A — placeholder constant for the S2-shaped map so L1^{-1}(0) is nonzero
+             on the inverse-shape row; NOT claimed as ARIA's published b (paper
+             Section 7 item 1). Linear parts are random either way.
+    """
+    A = rand_affine(rng, const=0x63)      # ARIA-shaped S1 constant; random A
+    B = rand_affine(rng, const=0x5A)      # placeholder S2 constant; random B
     # S1  = A . inv                       -> L1 = id,        j=0, L2 = A
     # S2  = B . Frob^3 . inv              -> L1 = id,        j=3, L2 = B
     # S1^-1 = inv . A^-1                  -> L1 = A^-1,      j=0, L2 = id
@@ -225,14 +238,14 @@ def aria_variants(rng):
     def affine_inverse(M):
         basis = [M.bwd[1 << i] ^ M.bwd[0] for i in range(8)]
         return Affine(basis, M.bwd[0])
-    return [("ARIA S1",     IDENT,               0, A),
-            ("ARIA S2",     IDENT,               3, B),
-            ("ARIA S1^-1",  affine_inverse(A),   0, IDENT),
-            ("ARIA S2^-1",  affine_inverse(B),   5, IDENT)]
+    return [("ARIA-shaped S1",     IDENT,               0, A),
+            ("ARIA-shaped S2",     IDENT,               3, B),
+            ("ARIA-shaped S1^-1",  affine_inverse(A),   0, IDENT),
+            ("ARIA-shaped S2^-1",  affine_inverse(B),   5, IDENT)]
 
 
 def check_aria(variants):
-    print("\n[2] the four ARIA substitution-layer maps")
+    print("\n[2] four ARIA-shaped maps (random linear part, ARIA affine constant)")
     ok = True
     for name, L1, j, L2 in variants:
         ok &= bridge_check(name, L1, j, L2)
@@ -274,7 +287,7 @@ def check_bad_index_location(variants):
             D = powf(inv(L1.lin[d]), 1 << j)
             if g != (mul(mul(powf(t, 1 << j), powf(t, 1 << j)), D) ^ powf(t, 1 << j)):
                 fails += 1
-        print(f"    {name:<12} L1^-1(0) = 0x{z:02x}   identity fails there for"
+        print(f"    {name:<20} L1^-1(0) = 0x{z:02x}   identity fails there for"
               f" {fails} of {total} reference values")
         ok &= fails > 0
     return ok
@@ -303,16 +316,18 @@ def check_invariant(variants, rng):
             good = len(vals) == 1 and offline in vals
             ok &= good
             if (m, n) == (7, 11):
-                print(f"    {name:<12} m,n=({m},{n}): {len(vals)} distinct over"
-                      f" 255 keys, matches offline: {offline in vals}")
+                print(f"    {name:<20} m,n=({m},{n}): {len(vals)} distinct over"
+                      f" 255 admissible reference values s, matches offline: {offline in vals}")
     print(f"    all four variants x four exponent pairs: {'OK' if ok else 'FAIL'}")
     return ok
 
 
 def main():
+    t0 = time.perf_counter()
     rng = random.Random(SEED)
     print(__doc__.strip().splitlines()[0])
-    print(f"GF(2^8) mod 0x{MOD:03X}, seed {SEED}\n")
+    print(f"GF(2^8) mod 0x{MOD:03X}, seed {SEED}")
+    print(f"Python {sys.version.split()[0]}, {platform.system()} {platform.release()}\n")
     variants = aria_variants(rng)
     results = [
         check_class(rng),
@@ -321,7 +336,8 @@ def main():
         check_bad_index_location(variants),
         check_invariant(variants, rng),
     ]
-    print(f"\n{sum(results)}/{len(results)} checks passed.")
+    elapsed = time.perf_counter() - t0
+    print(f"\n{sum(results)}/{len(results)} checks passed in {elapsed:.2f}s.")
     return 0 if all(results) else 1
 
 

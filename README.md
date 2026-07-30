@@ -38,7 +38,9 @@ python verify_bridge_class.py
 Five checks: the class identity across all eight Frobenius exponents against
 random affine bijections; the four ARIA instantiations; the exponent facts
 `x^247 = (x^-1)^8` and `x^223 = (x^-1)^32`; the bad-index locations and failure
-counts; and invariance of the power-sum ratio `I(m,n)` across all 255 key values.
+counts; and invariance of the power-sum ratio `I(m,n)` across all 255 admissible
+reference values `s`. Check [2] uses ARIA-shaped instantiations (random linear
+parts, fixed ARIA affine constants) — not ARIA's published matrices.
 Deterministic apart from seeded draws of the affine maps.
 
 ## Lean
@@ -62,14 +64,14 @@ what linearizes the bridge action.
 ## Release
 
 - Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
-- **Paper DOI (PDF only, v1.0.1):** [10.5281/zenodo.21705738](https://doi.org/10.5281/zenodo.21705738)
-- **Paper concept DOI:** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468)
+- **Paper concept DOI (prefer for citation):** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) — always latest PDF
+- **Paper version DOI (this PDF):** [10.5281/zenodo.21710366](https://doi.org/10.5281/zenodo.21710366) (v1.0.3)
 - **Software DOI (this repo, GitHub `v1.0.0`):** [10.5281/zenodo.21705940](https://doi.org/10.5281/zenodo.21705940)
 - **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases/tag/v1.0.0
 - **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
-- **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/)
+- **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/) — path fragment is historical; page cites concept `…468` / PDF version `…366`
 
-Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software DOI zip).
+Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software DOI zip). Superseded paper DOIs and the post-mint grep guard: `ZENODO.md`, `scripts/check_doi_consistency.ps1`.
 
 ## Citation
 
@@ -81,10 +83,11 @@ Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software
   title        = {Mobius Bridges for the Invert-and-Affine S-box Class,
                   with the Four ARIA Instantiations},
   year         = {2026},
-  version      = {1.0.1},
+  version      = {1.0.3},
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.21705738},
-  url          = {https://doi.org/10.5281/zenodo.21705738}
+  doi          = {10.5281/zenodo.21705468},
+  url          = {https://doi.org/10.5281/zenodo.21705468},
+  note         = {Concept DOI (always latest). Pinned PDF: 10.5281/zenodo.21710366}
 }
 ```
 

@@ -1,7 +1,12 @@
 {
-  "timestamp_utc": "2026-07-30T14:23:34.9837235Z",
-  "script": "verify_bridge_class.py",
+  "timestamp_utc": "2026-07-30T15:44:03.2259903Z",
+  "python_version": "Python 3.14.4",
+  "platform": "Microsoft Windows NT 10.0.26200.0",
+  "git_commit": "bb1dff3683dd3a185678a4ca315587fccffae6fa",
   "seed": 5785,
+  "script": "verify_bridge_class.py",
   "exit_code": 0,
-  "note": "v3files import"
+  "runtime_seconds": 3.52,
+  "output_file": "results/verify_bridge_class_out.txt",
+  "note": "ARIA-shaped labels; skip recount 510 = 255 t=0 + 255 b_w=0"
 }

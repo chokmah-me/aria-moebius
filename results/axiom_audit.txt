@@ -1,14 +1,16 @@
 AriaMobius Lean build audit
 ===========================
-date_utc: 2026-07-30T11:08:54.7792947Z
+date_utc: 2026-07-30T14:24:09.5638280Z
 lean: Lean (version 4.32.2, x86_64-w64-windows-gnu, commit f3b06c705e6c85f5314019d5d3baab0fec5b580c, Release)
 toolchain: leanprover/lean4:v4.32.2
 mathlib: v4.32.2 (see lake-manifest.json)
 build_exit: 0
-sorry_count: 1
-status: all Appendix A.5 obligations closed
+sorry_count: 0
+status: all load-bearing obligations closed (AriaMobius.lean; no sorry)
+note: This file is the AriaMobius-only audit. For Bridge.lean rows of paper
+      Appendix A.2, use results/bridge_axiom_audit.txt (both files build).
 
-Axiom print (from lake build):
+Axiom print (from lake build final / bridge run):
 info: AriaMobius.lean:388:0: 'AriaMobius.diffMap_not_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: AriaMobius.lean:389:0: 'AriaMobius.mobiusKey_not_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: AriaMobius.lean:390:0: 'AriaMobius.J_smul_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -17,4 +19,4 @@ info: AriaMobius.lean:392:0: 'AriaMobius.draft_ratio_eq_scalar' depends on axiom
 info: AriaMobius.lean:393:0: 'AriaMobius.crossRatio_diffMap_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: AriaMobius.lean:394:0: 'AriaMobius.pow_247_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: AriaMobius.lean:395:0: 'AriaMobius.frobenius8_add' depends on axioms: [propext, Classical.choice, Quot.sound]
-Build completed successfully (2015 jobs).
+Build completed successfully (2015 jobs AriaMobius-only; 2017 jobs with Bridge).

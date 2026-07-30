@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.0.3 -- 2026-07-30 -- Zenodo version `…366` (concept-only PDF body)
+
+Current paper **version** DOI: `10.5281/zenodo.21710366`.  
+Concept (in paper body; always latest): `10.5281/zenodo.21705468`.
+
+| Paper DOI | Role |
+|---|---|
+| `…468` | concept (stable; in paper body) |
+| `…469` | superseded first mint (catalog slug only) |
+| `…738` | superseded v1.0.1 |
+| `…741` | superseded (immutable; PDF self-DOI lagged) |
+| `…366` | **current** version (CITATION.cff, ZENODO.md, SEARCH-META) |
+
+## v1.0.2 -- 2026-07-30 -- DOI hygiene + errata content
+
+Content errata (LaTeX, Thm 3.1 / Cor. 3.2, skip 510, ARIA-shaped, A.3, refs,
+audit, verifier labels). Body cites concept only. Intermediate Zenodo version
+was `…741` (now superseded by `…366`).
+
+## v1.0.1 errata -- 2026-07-30 -- (superseded by v1.0.2 DOI layout)
+
+Earlier errata pass; version DOI was `10.5281/zenodo.21705738`. Superseded.
+
 ## v3 -- 2026-07-30 -- scientific pivot: negative result retracted
 
 **The v2 thesis was wrong and is withdrawn.**

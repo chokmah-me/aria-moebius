@@ -1,18 +1,16 @@
 <p class="hebrew-epigraph" dir="rtl" lang="he">אִם יִרְצֶה הַשֵּׁם</p>
 
-<p class="hebrew-date" dir="rtl" lang="he">HEBREW_DATE_TODO</p>
-
 # Mobius Bridges for the Invert-and-Affine S-box Class, with the Four ARIA Instantiations
 
-Daniyel Yaacov Bilar, Chokmah LLC, chokmah-dyb@pm.me
-ORCID: [0000-0002-9040-6914](https://orcid.org/0000-0002-9040-6914)
+Daniyel Yaacov Bilar, Chokmah LLC, chokmah-dyb@pm.me ORCID: [0000-0002-9040-6914](https://orcid.org/0000-0002-9040-6914)
+
+<p class="hebrew-date" dir="rtl" lang="he">ט״ז בְּאָב תשפ״ו</p>
 
 30 July 2026
 
-Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-DOI: DOI_TODO (Zenodo record not yet minted)
+Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). DOI: [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) (Zenodo concept DOI; always resolves to the latest version).
 
----
+------
 
 ## Abstract
 
@@ -20,40 +18,42 @@ The Mobius Bridge of Nasr and Carlini removes one guessed key byte from meet-in-
 
 $$S = L_2 \circ \mathrm{Frob}^j \circ \mathrm{inv} \circ L_1,$$
 
-with $L_1$ and $L_2$ GF(2)-affine bijections and $\mathrm{Frob}$ the squaring map $x \mapsto x^2$, the same reciprocal-and-reparametrize step yields an affine bridge identity in which both parameters are raised to the $2^j$ power and the multiplier remains the square of the translation. The Frobenius exponent is the only degree of freedom. AES instantiates the case $j = 0$ with $L_1 = \mathrm{id}$. ARIA instantiates four distinct members: its substitution layer draws on $S_1$, $S_2$, $S_1^{-1}$ and $S_2^{-1}$, at exponents $0$, $3$, $0$ and $5$, each with its own offline multiset. A consequence that does not appear in the AES case is that the indices where the convention $\mathrm{inv}(0) = 0$ breaks the identity move with $L_1$, sitting at $L_1^{-1}(0)$ rather than at $0$; for ARIA's two inverse S-boxes these are the affine constants, so the published bad-index treatment does not port unchanged. The bridge identities are verified exhaustively over $\mathrm{GF}(2^8)$ and formalized in Lean 4. No attack complexities for ARIA are claimed.
+with $L_1$ and $L_2$ GF(2)-affine bijections and $\mathrm{Frob}$ the squaring map $x \mapsto x^2$, the same reciprocal-and-reparametrize step yields an affine bridge identity in which both parameters are raised to the $2^j$ power and the multiplier remains the square of the translation. The Frobenius exponent is the only degree of freedom. AES instantiates the case $j = 0$ with $L_1 = \mathrm{id}$. ARIA instantiates four distinct members at exponents $0$, $3$, $0$ and $5$: $S_1$, $S_2$, $S_1^{-1}$ and $S_2^{-1}$. The bad indices move from $0$ to $L_1^{-1}(0)$, which for ARIA's inverse S-boxes are the affine constants, so the published bad-index treatment does not port unchanged. The bridge identities are verified exhaustively over $\mathrm{GF}(2^8)$ and formalized in Lean 4. No attack complexities for ARIA are claimed.
 
 **Keywords:** ARIA, block cipher, meet-in-the-middle attack, Mobius Bridge, S-box, GF(2^8) inversion, Frobenius endomorphism, affine group, Lean 4.
 
----
+------
 
 ## Notation
 
-| Symbol | Meaning |
-|---|---|
-| $\mathbb{F}$ | the field GF(2^8) modulo $x^8 + x^4 + x^3 + x + 1$ |
-| $\oplus$ | addition in $\mathbb{F}$, equivalently bitwise XOR |
-| $\mathrm{inv}$ | field inversion, with the convention $\mathrm{inv}(0) = 0$ |
-| $\mathrm{Frob}$ | the squaring map $x \mapsto x^2$, a field automorphism |
-| $L_1, L_2$ | GF(2)-affine bijections of $\mathbb{F}$ |
-| $M_1, M_2$ | their linear parts, so $L_i(x) = M_i(x) \oplus c_i$ |
-| $j$ | the Frobenius exponent of an S-box in the class |
-| $S$ | an S-box, $S = L_2 \circ \mathrm{Frob}^j \circ \mathrm{inv} \circ L_1$ |
-| $\kappa$ | the unknown key byte added after the S-box |
-| $a_\omega$ | the unknown intermediate value at delta-set index $\omega$ |
-| $s$ | the unknown reference value $a_0$ |
-| $d_\omega$ | the offline-known difference $a_0 \oplus a_\omega$ |
-| $v_\omega$ | the online-known value $S(a_\omega) \oplus \kappa$ |
-| $t$ | the bridge base point $L_1(s)$ |
-| $e_\omega$ | the transported difference $M_1(d_\omega)$ |
-| $g_\omega$ | the online bridge value |
-| $\alpha, \beta$ | the bridge multiplier and translation |
-| $D_\omega$ | the offline multiset element |
-| $P_m$ | pairwise-difference power sum of order $m$ |
-| $I_{m,n}$ | the power-sum ratio $P_m^{\,n} / P_n^{\,m}$ |
+| Symbol          | Meaning                                                      |
+| --------------- | ------------------------------------------------------------ |
+| $\mathbb{F}$    | the field GF(2^8) modulo $x^8 + x^4 + x^3 + x + 1$           |
+| $\oplus$        | addition in $\mathbb{F}$, equivalently bitwise XOR           |
+| $\mathrm{inv}$  | field inversion, with the convention $\mathrm{inv}(0) = 0$   |
+| $\mathrm{Frob}$ | the squaring map $x \mapsto x^2$, a field automorphism       |
+| $L_1, L_2$      | GF(2)-affine bijections of $\mathbb{F}$                      |
+| $M_1, M_2$      | their linear parts, so $L_i(x) = M_i(x) \oplus c_i$          |
+| $j$             | the Frobenius exponent of an S-box in the class              |
+| $S$             | an S-box, $S = L_2 \circ \mathrm{Frob}^j \circ \mathrm{inv} \circ L_1$ |
+| $\kappa$        | the unknown key byte added after the S-box                   |
+| $a_\omega$      | the unknown intermediate value at delta-set index $\omega$   |
+| $s$             | the unknown reference value $a_0$                            |
+| $d_\omega$      | the offline-known difference $a_0 \oplus a_\omega$           |
+| $v_\omega$      | the online-known value $S(a_\omega) \oplus \kappa$           |
+| $t$             | the bridge base point $L_1(s)$                               |
+| $e_\omega$      | the transported difference $M_1(d_\omega)$                   |
+| $g_\omega$      | the online bridge value                                      |
+| $\alpha, \beta$ | the bridge multiplier and translation                        |
+| $D_\omega$      | the offline multiset element                                 |
+| $P_m$           | pairwise-difference power sum of order $m$                   |
+| $I_{m,n}$       | the power-sum ratio $P_m^{\,n} / P_n^{\,m}$                    |
+| $A$, $a$        | linear part and additive constant of ARIA $S_1$ (AES affine) |
+| $B$, $b$        | linear part and additive constant of ARIA $S_2$              |
 
 SPN denotes a substitution-permutation network; MitM denotes meet-in-the-middle; AGL denotes the affine general linear group; DDT denotes the difference distribution table.
 
----
+------
 
 ## 1. Introduction
 
@@ -108,9 +108,11 @@ Single-key, chosen-plaintext. The results below are algebraic identities about o
 
 $$t := L_1(s), \qquad e_\omega := M_1(d_\omega), \qquad g_\omega := \big[M_2^{-1}(v_0 \oplus v_\omega)\big]^{-1} .$$
 
-If $t \neq 0$ and $L_1(a_\omega) \neq 0$, then
+If $t \neq 0$, $d_\omega \neq 0$, and $L_1(a_\omega) \neq 0$, then
 
 $$g_\omega = \alpha \cdot D_\omega \oplus \beta, \qquad \beta = t^{2^j}, \quad \alpha = \beta^2, \quad D_\omega = e_\omega^{-2^j}.$$
+
+(The conclusion $D_\omega = e_\omega^{-2^j}$ needs $e_\omega \neq 0$, which follows from $d_\omega \neq 0$ because $M_1$ is a linear bijection. The definition of $g_\omega$ uses a reciprocal, so $v_0 \oplus v_\omega \neq 0$ is required; for bijective $S$ this is equivalent to $d_\omega \neq 0$. The Lean statement `bridge_identity` records $(he : e \neq 0)$ and $(hve : v + e \neq 0)$ explicitly.)
 
 *Proof.* The key byte cancels, $v_0 \oplus v_\omega = S(a_0) \oplus S(a_\omega)$. Write $b_\omega := L_1(a_\omega)$. The constant $c_2$ cancels in the difference and $M_2$ is additive, so
 
@@ -142,7 +144,7 @@ Three remarks.
 
 $$I_{m,n} := \frac{P_m^{\,n}}{P_n^{\,m}}$$
 
-takes the same value online and offline whenever $P_n \neq 0$. This is the invariant of [1, Section 4.1], and the derivation above shows it applies to every member of the class.
+takes the same value online and offline whenever $P_n \neq 0$ and $t \neq 0$ (equivalently $\alpha \neq 0$). This is the invariant of [1, Section 4.1], and the derivation above shows it applies to every member of the class. (Lean `J_affine_invariant` carries `hα : α ≠ 0`.)
 
 ## 4. ARIA's four substitution-layer maps
 
@@ -150,14 +152,14 @@ ARIA [4] is a 128-bit SPN with 12, 14 or 16 rounds. Its substitution layer appli
 
 Two exponent facts place the pair $S_2$, $S_2^{-1}$ in the class. First, $x^{247} = x^{-8} = (x^{-1})^8$ on $\mathbb{F}^\times$, so $S_2$ sits at $j = 3$. Second, $247 \cdot 223 \equiv 1 \pmod{255}$ and $223 = 255 - 32$, so the inverse exponent satisfies $x^{223} = (x^{-1})^{32}$ and $S_2^{-1}$ sits at $j = 5$. Both are verified exhaustively.
 
-| ARIA map | $L_1$ | $j$ | $L_2$ | $\beta$ | offline $D_\omega$ | bad index $L_1^{-1}(0)$ |
-|---|---|---|---|---|---|---|
-| $S_1$ | $\mathrm{id}$ | 0 | $A(\cdot) \oplus a$ | $s$ | $d_\omega^{-1}$ | $0$ |
-| $S_2$ | $\mathrm{id}$ | 3 | $B(\cdot) \oplus b$ | $s^{8}$ | $d_\omega^{-8}$ | $0$ |
-| $S_1^{-1}$ | $A^{-1}(\cdot \oplus a)$ | 0 | $\mathrm{id}$ | $A^{-1}(s \oplus a)$ | $\big(A^{-1}(d_\omega)\big)^{-1}$ | $a$ |
-| $S_2^{-1}$ | $B^{-1}(\cdot \oplus b)$ | 5 | $\mathrm{id}$ | $\big(B^{-1}(s \oplus b)\big)^{32}$ | $\big(B^{-1}(d_\omega)\big)^{-32}$ | $b$ |
+| ARIA map   | $L_1$                    | $j$  | $L_2$               | $\beta$                             | offline $D_\omega$                 | bad index $L_1^{-1}(0)$ |
+| ---------- | ------------------------ | ---- | ------------------- | ----------------------------------- | ---------------------------------- | ----------------------- |
+| $S_1$      | $\mathrm{id}$            | 0    | $A(\cdot) \oplus a$ | $s$                                 | $d_\omega^{-1}$                    | $0$                     |
+| $S_2$      | $\mathrm{id}$            | 3    | $B(\cdot) \oplus b$ | $s^{8}$                             | $d_\omega^{-8}$                    | $0$                     |
+| $S_1^{-1}$ | $A^{-1}(\cdot \oplus a)$ | 0    | $\mathrm{id}$       | $A^{-1}(s \oplus a)$                | $\big(A^{-1}(d_\omega)\big)^{-1}$  | $a$                     |
+| $S_2^{-1}$ | $B^{-1}(\cdot \oplus b)$ | 5    | $\mathrm{id}$       | $\big(B^{-1}(s \oplus b)\big)^{32}$ | $\big(B^{-1}(d_\omega)\big)^{-32}$ | $b$                     |
 
-*Table 1. The four maps of ARIA's substitution layer as members of the class of Theorem 3.1. In every row the multiplier is the square of the translation shown. The offline multiset differs in all four rows, so an implementation must select the right one per byte position. $A^{-1}$ and $B^{-1}$ denote the inverses of the linear parts. Each row verified exhaustively over all pairs $(s, d)$ with the bad indices excluded: 0 mismatches out of 64770 per row.*
+*Table 1. The four maps of ARIA's substitution layer as members of the class of Theorem 3.1. In every row the multiplier is the square of the translation shown. The offline multiset differs in all four rows, so an implementation must select the right one per byte position. $A^{-1}$ and $B^{-1}$ denote the inverses of the linear parts. The *shape* of each row (exponents, placement of the affine map, form of $\beta$ and $D_\omega$) is verified exhaustively over all pairs $(s,d)$ with the bad indices excluded: 0 mismatches out of 64770 per row, using random linear parts with the ARIA affine constants as in Section 6. Substituting the published matrices $A$, $B$ remains open (Section 7, item 1).*
 
 The forward S-boxes put the affine map outermost, so it is stripped online by applying $M_2^{-1}$ before the reciprocal, exactly as in [1]. The inverse S-boxes put it innermost, so nothing is stripped online and the affine map is absorbed into the offline multiset instead. This is a mild practical advantage for the inverse S-boxes, since it removes one table lookup per delta-set element from the online loop.
 
@@ -171,44 +173,44 @@ For $L_1 = \mathrm{id}$ this is $\{0, s\}$, which is the set treated in [1] by c
 
 The exhaustive check makes the size of the discrepancy clear. At $a_\omega = L_1^{-1}(0)$ the identity fails for **every** admissible reference value, 255 of 255 for the forward S-boxes and 254 of 254 for the inverse ones. This is not a rare corner that can be absorbed into a success probability; it is a complete family, and it is the same size as the family that [1] handles. The correct generalization is to append $L_1^{-1}(0)$ rather than 0, and to note that the two forward and two inverse positions require different appended elements.
 
-The 508 discrepancies observed before the bad indices are excluded, out of 64770 tested pairs per variant, are exactly this family: 254 from $t = 0$ and 254 from $b_\omega = 0$.
+Of the $65280 = 256 \times 255$ ordered pairs $(s, d)$ with $d \neq 0$, the verifier skips $510$ and tests $64770$ per variant. The $510$ skips split as $255$ with $t = 0$ (the full difference-row when the reference itself is a bad index) plus $255$ with $b_\omega = L_1(a_\omega) = 0$ (one difference per remaining reference). The branch $S(s) = S(a_\omega)$ never fires for bijective $S$. These $510$ exclusions are exactly the bad-index family of the theorem, not a residual of failed identities.
 
 ## 6. Verification
 
-`verify_bridge_class.py` performs five checks over GF(2^8), deterministic apart from seeded draws of the affine maps, and exits 0 only if all pass.
+`verify_bridge_class.py` performs five checks over GF(2^8), deterministic apart from seeded draws of the affine maps, and exits 0 only if all pass. On the archived run (CPython 3.14.4, Windows 11, seed 5785) the full suite completes in a few seconds; see `results/verify_bridge_class_meta.json`.
 
 1. **The class.** Theorem 3.1 for all eight Frobenius exponents against three independently drawn pairs $(L_1, L_2)$ of random affine bijections, exhaustive over all $(s, d)$: 0 mismatches out of 64770 per exponent.
-2. **ARIA.** The four rows of Table 1: 0 mismatches out of 64770 each. The key byte $\kappa$ verified to cancel in every case.
+2. **ARIA-shaped instantiations.** Four maps with the Table 1 exponents and placement of the affine map, random linear parts, and ARIA affine constants fixed only to locate $L_1^{-1}(0)$: 0 mismatches out of 64770 each. The key byte $\kappa$ verified to cancel in every case. These are *not* ARIA's published $A$, $B$ (Section 7, item 1).
 3. **Exponents.** $x^{247} = (x^{-1})^8$ and $x^{223} = (x^{-1})^{32}$ over all nonzero $x$, and $247 \cdot 223 \equiv 1 \pmod{255}$.
 4. **Bad indices.** Located at $L_1^{-1}(0)$ for each variant, with the total-failure counts of Section 5.
-5. **Fingerprint.** $I_{m,n}$ over all 255 key values for each of the four variants at exponent pairs $(7,11)$, $(7,13)$, $(11,23)$, $(31,127)$: a single value in every case, matching the offline value.
+5. **Fingerprint.** $I_{m,n}$ over all 255 admissible reference values $s$ for each of the four variants at exponent pairs $(7,11)$, $(7,13)$, $(11,23)$, $(31,127)$: a single value in every case, matching the offline value. ($\kappa$ cancels before $g_\omega$ is formed, so this loop is not a key-variation test.)
 
-Using random affine bijections rather than ARIA's published constants is deliberate, and is stronger: it checks the class rather than one instance. Confirming Table 1 against ARIA's actual $A$, $B$, $a$, $b$ is a substitution that changes no argument, and is listed in Section 7 as an item to complete before submission.
+Using random affine bijections rather than ARIA's published constants is deliberate, and is stronger for the class claim: it checks the class rather than one instance. Confirming Table 1 against ARIA's actual $A$, $B$, $a$, $b$ is a substitution that changes no argument, and is listed in Section 7 as an item to complete before a stronger claim is made.
 
 ## 7. What this note does not establish
 
 The following are open, and none of them is addressed here.
 
-1. **ARIA's published constants.** Table 1 is verified for arbitrary affine bijections. Substituting ARIA's specification values is mechanical and has not been done.
+1. **ARIA's published constants.** Table 1 is verified for the *shape* of each row (exponents and affine placement) under random linear parts. Substituting ARIA's specification values of $A$, $B$, $a$, $b$ is mechanical and has not been done.
 2. **Byte geometry.** Whether a byte position exists in a reduced-round ARIA MitM attack where the last unknown key byte reaches the match point through exactly one S-box, with the equivalent-subkey trick collapsing the diffusion layer to a single byte. ARIA's diffusion matrix is an involutory binary matrix, so the algebraic step is available, but the byte-level accounting has not been done.
 3. **Cost.** The per-element cost figures of [1] depend on a packed power table, a DDT-aware Gray-code walk tuned to the AES difference distribution table, and an S-box cache over a four-byte anti-diagonal peel. ARIA's diffusion layer has weight 7 rather than 4 and $S_2$ has its own DDT, so none of these transfers without re-derivation.
-4. **Fingerprint entropy at attack width.** The invariance of $I_{m,n}$ is established here. Its collision entropy at the 12 or 13 byte width an attack would need is not: the measurement reported in earlier drafts covered two bytes at a sample size four to five orders of magnitude below the one used in [1].
+4. **Fingerprint entropy at attack width.** The invariance of $I_{m,n}$ is established here. Its collision entropy at the 12 or 13 byte width an attack would need is not. An earlier-draft measurement at two-byte width and a sample size four to five orders of magnitude below [1] is withdrawn with the v2 draft (see `CHANGELOG.md`); no replacement figure is claimed here.
 5. **A baseline.** Bai and Yu [5] attack 7-round ARIA-192/256 and 8-round ARIA-256. They do not give a 7-round ARIA-128 attack, so any future comparison at that parameter must locate a real baseline or state that none exists.
 6. **Complexities.** No data, time or memory figure for ARIA appears in this note, and none should be quoted from it.
 
 ## 8. Related work and priority
 
-The Mobius Bridge is due to Nasr and Carlini [1], published 28 July 2026 together with an unrelated result on HAWK. Their artifact repository contains code for AES, HAWK and LEA-128, and contains no ARIA, Camellia, CLEFIA or SM4. Their Lean development consists of one theorem, `chi_fp`, bounding false-positive collisions of the parity-vector fingerprint under a uniformity assumption; the bridge identity itself is not formalized there. The present note is, to the author's knowledge as of 30 July 2026, the first statement of the class generalization and the first treatment of the inverse-S-box case.
+The Mobius Bridge is due to Nasr and Carlini [1], published 28 July 2026 together with an unrelated result on HAWK. Their artifact repository [8] contains code for AES, HAWK and LEA-128, and contains no ARIA, Camellia, CLEFIA or SM4. Their Lean development consists of one theorem, `chi_fp`, bounding false-positive collisions of the parity-vector fingerprint under a uniformity assumption; the bridge identity itself is not formalized there. The present note is, to the author's knowledge as of 30 July 2026, the first statement of the class generalization and the first treatment of the inverse-S-box case. The search log underlying these priority claims is shipped as `results/priority_search_log.md`.
 
 The line of work the bridge improves runs from Demirci and Selcuk through Dunkelman, Keller and Shamir [3] to Derbez, Fouque and Jean [2]. Prior meet-in-the-middle analysis of ARIA is due to Tang et al. [6] and Bai and Yu [5], with a later improvement by Li and Chen [7]; none uses S-box algebraic structure in the sense here.
 
 ## 9. Conclusion
 
-The Mobius Bridge is not a fact about the AES S-box. It is a fact about the class of S-boxes that factor as an affine map, a Frobenius power, an inversion and another affine map, and within that class the only quantity that varies is the Frobenius exponent. ARIA exhibits four members of the class simultaneously, at exponents 0, 3, 0 and 5, and its two inverse S-boxes relocate the bad indices from zero to the affine constants, which is the one place where the published treatment needs amendment rather than substitution. Whether any of this yields an attack on reduced-round ARIA is a separate question, and this note deliberately does not open it.
+The Mobius Bridge is a fact about the class of S-boxes that factor as an affine map, a Frobenius power, an inversion and another affine map, and within that class the only quantity that varies is the Frobenius exponent. ARIA exhibits four members of the class simultaneously, at exponents 0, 3, 0 and 5, and its two inverse S-boxes relocate the bad indices from zero to the affine constants, which is the one place where the published treatment needs amendment rather than substitution. Whether any of this yields an attack on reduced-round ARIA is a separate question, and this note deliberately does not open it.
 
 ## Data and code availability
 
-`verify_bridge_class.py` reproduces every numeric claim above: the class identity across all eight Frobenius exponents, the four ARIA rows, the exponent facts, the bad-index locations and failure counts, and the fingerprint invariance. Pure Python 3, no dependencies, deterministic apart from seeded draws, exit code 0 iff all five checks pass. Archived run and provenance metadata in `results/`. Lean sources in `AriaMobius.lean` and `Bridge.lean`. Repository: `https://github.com/chokmah-me/aria-moebius`. Archived at DOI_TODO.
+`verify_bridge_class.py` reproduces every numeric claim above: the class identity across all eight Frobenius exponents, the four ARIA-shaped rows, the exponent facts, the bad-index locations and failure counts, and the fingerprint invariance. Pure Python 3, no dependencies, deterministic apart from seeded draws, exit code 0 iff all five checks pass. Archived run and provenance metadata in `results/`. Lean sources in `AriaMobius.lean` and `Bridge.lean`. Repository: `https://github.com/chokmah-me/aria-moebius`. Paper (Zenodo concept DOI, always latest): https://doi.org/10.5281/zenodo.21705468. Software: https://doi.org/10.5281/zenodo.21705940. Version-specific paper DOIs are recorded in the repository file `ZENODO.md`.
 
 ## AI utilization statement
 
@@ -218,9 +220,11 @@ An initial draft was generated by a large language model and presented parameter
 
 A second draft was produced after review by Claude Opus 5. That review correctly identified the garbled identity and the missing baseline, but introduced an error of its own: it derived the residual action in the pre-reciprocal variable, concluded that power-sum fingerprints could not transfer to ARIA, and recommended reframing the work as a negative result. The conclusion was an artifact of the coordinate choice. It was retracted after the source paper [1] was read directly, at which point the reciprocal-and-reparametrize step made the correct derivation immediate.
 
-The present note is the third draft. Claude Opus 5 derived Theorem 3.1, wrote the verification script and the Lean sources, and drafted the text; the author designed the checks, ran them, and is responsible for all content. The Lean development in `AriaMobius.lean` was built and audited by the author against Lean 4.32.2 and Mathlib v4.32.2, with only the standard three axioms and no use of `native_decide`; `Bridge.lean` has not yet been built at the time of writing and is marked as such in its header. Two failed intermediate computations, a degenerate multiset sample and a mis-specified field generator, were caught by assertion and are recorded in the changelog rather than silently removed.
+The present note is the third draft. Claude Opus 5 derived Theorem 3.1, wrote the verification script and the Lean sources, and drafted the text; the author designed the checks, ran them, and is responsible for all content. Both `AriaMobius.lean` and `Bridge.lean` were built and audited by the author against Lean 4.32.2 and Mathlib v4.32.2, with only the standard three axioms and no use of `native_decide`; see `results/bridge_axiom_audit.txt`. Two failed intermediate computations, a degenerate multiset sample and a mis-specified field generator, were caught by assertion and are recorded in the changelog rather than silently removed.
 
 The episode is a small case study in a failure mode relevant to [1, Section 6]: a machine-generated result, a machine review that corrected it in one place and broke it in another, and a correction that arrived only when the primary source was consulted rather than paraphrased.
+
+No AI system is listed as a co-author. Affiliation: Chokmah LLC, Norwich, VT. Contact: chokmah-dyb@pm.me.
 
 ## References
 
@@ -232,13 +236,15 @@ The episode is a small case study in a failure mode relevant to [1, Section 6]: 
 
 [4] D. Kwon, J. Kim, S. Park, S. H. Sung, Y. Sohn, J. H. Song, Y. Yeom, E.-J. Yoon, S. Lee, J. Lee, S. Chee, D. Han, and J. Hong, "New Block Cipher: ARIA," in *Information Security and Cryptology - ICISC 2003*, LNCS, vol. 2971, pp. 432-445, 2004. [Online]. Available: https://doi.org/10.1007/978-3-540-24691-6_32
 
-[5] D. Bai and H. Yu, "Improved Meet-in-the-Middle Attacks on Round-Reduced ARIA," in *Information Security - ISC 2013*, LNCS, vol. 7807, 2015. [Online]. Available: DOI_TODO_CONFIRM
+[5] D. Bai and H. Yu, "Improved Meet-in-the-Middle Attacks on Round-Reduced ARIA," in *Information Security - ISC 2013*, LNCS, pp. 155-168, 2015. [Online]. Available: https://doi.org/10.1007/978-3-319-27659-5_11
 
-[6] X. Tang, B. Sun, R. Li, C. Li, and J. Yin, "A meet-in-the-middle attack on reduced-round ARIA," *Journal of Systems and Software*, vol. 84, no. 10, pp. 1685-1692, 2011. [Online]. Available: DOI_TODO_CONFIRM
+[6] X. Tang, B. Sun, R. Li, C. Li, and J. Yin, "A meet-in-the-middle attack on reduced-round ARIA," *Journal of Systems and Software*, vol. 84, no. 10, pp. 1685-1692, 2011. [Online]. Available: https://doi.org/10.1016/j.jss.2011.04.053
 
 [7] M. Li and S. Chen, "Improved meet-in-the-middle attack on ARIA cipher," *Journal on Communications*, vol. 36, pp. 89-94, 2015. [Online]. Available: https://doaj.org/article/a53b22edf92b4bce91ded22b5bc06a77
 
----
+[8] M. Nasr and N. Carlini, cryptography-research-demo (AES / HAWK / LEA artifact repository), GitHub, commit `fa01c398b42bb7d94eadff75a42dfb45da484457`, accessed 2026-07-30. [Online]. Available: https://github.com/anthropics/cryptography-research-demo
+
+------
 
 ## Appendix A. Lean 4 formalization
 
@@ -250,16 +256,16 @@ The counts in Sections 5 and 6 are finite computations and stay in Python. Closi
 
 ### A.2 Correspondence
 
-| Paper | Lean name | File | Setting |
-|---|---|---|---|
-| reciprocal step, $j = 0$ | `bridge_identity` | `Bridge.lean` | any field, char 2 |
-| Theorem 3.1 | `bridge_frobenius` | `Bridge.lean` | any field, char 2 |
-| $P_m(\alpha D \oplus \beta) = \alpha^m P_m(D)$ | `P_affine` | `Bridge.lean` | any field, char 2 |
-| Corollary 3.2 | `J_affine_invariant` | `Bridge.lean` | any field, char 2 |
-| $x^{247} = (x^{-1})^8$ | `pow_247_eq` | `AriaMobius.lean` | GF(2^8) |
-| $x^{223} = (x^{-1})^{32}$ | `aria_S2inv_exponent` | `Bridge.lean` | GF(2^8) |
-| Frobenius additivity | `frobenius8_add` | `AriaMobius.lean` | GF(2^8) |
-| Section 5 counts | none | script only | by design, A.1 |
+| Paper                                          | Lean name             | File              | Setting           |
+| ---------------------------------------------- | --------------------- | ----------------- | ----------------- |
+| reciprocal step, $j = 0$                       | `bridge_identity`     | `Bridge.lean`     | any field, char 2 |
+| Theorem 3.1                                    | `bridge_frobenius`    | `Bridge.lean`     | any field, char 2 |
+| $P_m(\alpha D \oplus \beta) = \alpha^m P_m(D)$ | `P_affine`            | `Bridge.lean`     | any field, char 2 |
+| Corollary 3.2                                  | `J_affine_invariant`  | `Bridge.lean`     | any field, char 2 |
+| $x^{247} = (x^{-1})^8$                         | `pow_247_eq`          | `AriaMobius.lean` | GF(2^8)           |
+| $x^{223} = (x^{-1})^{32}$                      | `aria_S2inv_exponent` | `Bridge.lean`     | GF(2^8)           |
+| Frobenius additivity                           | `frobenius8_add`      | `AriaMobius.lean` | GF(2^8)           |
+| Section 5 counts                               | none                  | script only       | by design, A.1    |
 
 `AriaMobius.lean` additionally contains results derived for the second draft and retained as the geometry of the pre-reciprocal chart: `diffMap_eq`, `diffMap_not_scaling`, `crossRatio_diffMap_invariant`, and the unipotent-subgroup lemmas `U_mul`, `U_injective`. These are true and are not load-bearing for anything in this note. `diffMap_not_scaling` in particular states that the pre-reciprocal map is a scalar multiplication for no base point, which is correct and which does not obstruct Theorem 3.1, since the theorem concerns the reciprocal in a different variable. They are kept because they document why the coordinate choice matters.
 
@@ -272,4 +278,4 @@ lake exe cache get
 lake build
 ```
 
-Pinned to Lean 4.32.2 and Mathlib v4.32.2 in `lean-toolchain` and `lake-manifest.json`. `AriaMobius.lean` builds with exit 0 and every `#print axioms` reports `[propext, Classical.choice, Quot.sound]`. `Bridge.lean` is new and unbuilt at the time of writing; its header says so, and the correspondence table above should not be read as a build claim for its rows until `results/axiom_audit.txt` records them.
+Pinned to Lean 4.32.2 and Mathlib v4.32.2 in `lean-toolchain` and `lake-manifest.json`. Both `AriaMobius.lean` and `Bridge.lean` build with exit 0 against that toolchain. Every `#print axioms` for the load-bearing declarations reports only `[propext, Classical.choice, Quot.sound]` (for `P_affine`, `[propext, Quot.sound]`). The archived log is `results/lake_build_bridge.txt` (Built Bridge, 2017 jobs); the axiom lines for both files are recorded in `results/bridge_axiom_audit.txt`. Note that `results/axiom_audit.txt` is an earlier AriaMobius-only run and does not contain Bridge rows — use `bridge_axiom_audit.txt` for the correspondence table in A.2.
