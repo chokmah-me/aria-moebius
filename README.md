@@ -36,12 +36,11 @@ python verify_bridge_class.py
 ```
 
 Five checks: the class identity across all eight Frobenius exponents against
-random affine bijections; the four ARIA instantiations; the exponent facts
-`x^247 = (x^-1)^8` and `x^223 = (x^-1)^32`; the bad-index locations and failure
-counts; and invariance of the power-sum ratio `I(m,n)` across all 255 admissible
-reference values `s`. Check [2] uses ARIA-shaped instantiations (random linear
-parts, fixed ARIA affine constants) — not ARIA's published matrices.
-Deterministic apart from seeded draws of the affine maps.
+random affine bijections; the four ARIA maps with **published** $A$, $B$,
+$a=\mathtt{0x63}$, $b=\mathtt{0xE2}$; the exponent facts `x^247 = (x^-1)^8` and
+`x^223 = (x^-1)^32`; the bad-index locations and failure counts; and invariance
+of the power-sum ratio `I(m,n)` across all 255 admissible reference values `s`.
+Deterministic apart from seeded draws of the random affine maps in check [1].
 
 ## Lean
 

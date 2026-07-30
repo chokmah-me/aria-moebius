@@ -8,7 +8,7 @@ Daniyel Yaacov Bilar, Chokmah LLC, chokmah-dyb@pm.me ORCID: [0000-0002-9040-6914
 
 30 July 2026
 
-Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). DOI: [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) (Zenodo concept DOI; always resolves to the latest version).
+Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). DOI: [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) (Zenodo concept DOI; always resolves to latest).
 
 ------
 
@@ -148,7 +148,7 @@ takes the same value online and offline whenever $P_n \neq 0$ and $t \neq 0$ (eq
 
 ## 4. ARIA's four substitution-layer maps
 
-ARIA [4] is a 128-bit SPN with 12, 14 or 16 rounds. Its substitution layer applies $S_1$, $S_2$, $S_1^{-1}$, $S_2^{-1}$ in a fixed pattern, with $S_1(x) = A(x^{-1}) \oplus a$ the AES S-box and $S_2(x) = B(x^{247}) \oplus b$.
+ARIA [4] is a 128-bit SPN with 12, 14 or 16 rounds. Its substitution layer applies $S_1$, $S_2$, $S_1^{-1}$, $S_2^{-1}$ in a fixed pattern, with $S_1(x) = A(x^{-1}) \oplus a$ the AES S-box ($a = \mathtt{0x63}$) and $S_2(x) = B(x^{247}) \oplus b$ ($b = \mathtt{0xE2}$).
 
 Two exponent facts place the pair $S_2$, $S_2^{-1}$ in the class. First, $x^{247} = x^{-8} = (x^{-1})^8$ on $\mathbb{F}^\times$, so $S_2$ sits at $j = 3$. Second, $247 \cdot 223 \equiv 1 \pmod{255}$ and $223 = 255 - 32$, so the inverse exponent satisfies $x^{223} = (x^{-1})^{32}$ and $S_2^{-1}$ sits at $j = 5$. Both are verified exhaustively.
 
@@ -159,7 +159,7 @@ Two exponent facts place the pair $S_2$, $S_2^{-1}$ in the class. First, $x^{247
 | $S_1^{-1}$ | $A^{-1}(\cdot \oplus a)$ | 0    | $\mathrm{id}$       | $A^{-1}(s \oplus a)$                | $\big(A^{-1}(d_\omega)\big)^{-1}$  | $a$                     |
 | $S_2^{-1}$ | $B^{-1}(\cdot \oplus b)$ | 5    | $\mathrm{id}$       | $\big(B^{-1}(s \oplus b)\big)^{32}$ | $\big(B^{-1}(d_\omega)\big)^{-32}$ | $b$                     |
 
-*Table 1. The four maps of ARIA's substitution layer as members of the class of Theorem 3.1. In every row the multiplier is the square of the translation shown. The offline multiset differs in all four rows, so an implementation must select the right one per byte position. $A^{-1}$ and $B^{-1}$ denote the inverses of the linear parts. The *shape* of each row (exponents, placement of the affine map, form of $\beta$ and $D_\omega$) is verified exhaustively over all pairs $(s,d)$ with the bad indices excluded: 0 mismatches out of 64770 per row, using random linear parts with the ARIA affine constants as in Section 6. Substituting the published matrices $A$, $B$ remains open (Section 7, item 1).*
+*Table 1. The four maps of ARIA's substitution layer as members of the class of Theorem 3.1. In every row the multiplier is the square of the translation shown. The offline multiset differs in all four rows, so an implementation must select the right one per byte position. $A^{-1}$ and $B^{-1}$ denote the inverses of the linear parts. Each row is verified exhaustively against ARIA's published $A$, $B$, $a$, $b$ over all pairs $(s,d)$ with the bad indices excluded: 0 mismatches out of 64770 per row (Section 6).*
 
 The forward S-boxes put the affine map outermost, so it is stripped online by applying $M_2^{-1}$ before the reciprocal, exactly as in [1]. The inverse S-boxes put it innermost, so nothing is stripped online and the affine map is absorbed into the offline multiset instead. This is a mild practical advantage for the inverse S-boxes, since it removes one table lookup per delta-set element from the online loop.
 
@@ -180,23 +180,22 @@ Of the $65280 = 256 \times 255$ ordered pairs $(s, d)$ with $d \neq 0$, the veri
 `verify_bridge_class.py` performs five checks over GF(2^8), deterministic apart from seeded draws of the affine maps, and exits 0 only if all pass. On the archived run (CPython 3.14.4, Windows 11, seed 5785) the full suite completes in a few seconds; see `results/verify_bridge_class_meta.json`.
 
 1. **The class.** Theorem 3.1 for all eight Frobenius exponents against three independently drawn pairs $(L_1, L_2)$ of random affine bijections, exhaustive over all $(s, d)$: 0 mismatches out of 64770 per exponent.
-2. **ARIA-shaped instantiations.** Four maps with the Table 1 exponents and placement of the affine map, random linear parts, and ARIA affine constants fixed only to locate $L_1^{-1}(0)$: 0 mismatches out of 64770 each. The key byte $\kappa$ verified to cancel in every case. These are *not* ARIA's published $A$, $B$ (Section 7, item 1).
+2. **ARIA.** The four rows of Table 1 with ARIA's published affine maps $A$, $B$ and constants $a = \mathtt{0x63}$, $b = \mathtt{0xE2}$: 0 mismatches out of 64770 each. The key byte $\kappa$ verified to cancel in every case. Bad indices land at $L_1^{-1}(0) \in \{0, a, b\}$ as predicted.
 3. **Exponents.** $x^{247} = (x^{-1})^8$ and $x^{223} = (x^{-1})^{32}$ over all nonzero $x$, and $247 \cdot 223 \equiv 1 \pmod{255}$.
 4. **Bad indices.** Located at $L_1^{-1}(0)$ for each variant, with the total-failure counts of Section 5.
 5. **Fingerprint.** $I_{m,n}$ over all 255 admissible reference values $s$ for each of the four variants at exponent pairs $(7,11)$, $(7,13)$, $(11,23)$, $(31,127)$: a single value in every case, matching the offline value. ($\kappa$ cancels before $g_\omega$ is formed, so this loop is not a key-variation test.)
 
-Using random affine bijections rather than ARIA's published constants is deliberate, and is stronger for the class claim: it checks the class rather than one instance. Confirming Table 1 against ARIA's actual $A$, $B$, $a$, $b$ is a substitution that changes no argument, and is listed in Section 7 as an item to complete before a stronger claim is made.
+Check 1 uses random affine bijections and establishes the class. Check 2 instantiates the four published ARIA maps; no further substitution is required for Table 1.
 
 ## 7. What this note does not establish
 
 The following are open, and none of them is addressed here.
 
-1. **ARIA's published constants.** Table 1 is verified for the *shape* of each row (exponents and affine placement) under random linear parts. Substituting ARIA's specification values of $A$, $B$, $a$, $b$ is mechanical and has not been done.
-2. **Byte geometry.** Whether a byte position exists in a reduced-round ARIA MitM attack where the last unknown key byte reaches the match point through exactly one S-box, with the equivalent-subkey trick collapsing the diffusion layer to a single byte. ARIA's diffusion matrix is an involutory binary matrix, so the algebraic step is available, but the byte-level accounting has not been done.
-3. **Cost.** The per-element cost figures of [1] depend on a packed power table, a DDT-aware Gray-code walk tuned to the AES difference distribution table, and an S-box cache over a four-byte anti-diagonal peel. ARIA's diffusion layer has weight 7 rather than 4 and $S_2$ has its own DDT, so none of these transfers without re-derivation.
-4. **Fingerprint entropy at attack width.** The invariance of $I_{m,n}$ is established here. Its collision entropy at the 12 or 13 byte width an attack would need is not. An earlier-draft measurement at two-byte width and a sample size four to five orders of magnitude below [1] is withdrawn with the v2 draft (see `CHANGELOG.md`); no replacement figure is claimed here.
-5. **A baseline.** Bai and Yu [5] attack 7-round ARIA-192/256 and 8-round ARIA-256. They do not give a 7-round ARIA-128 attack, so any future comparison at that parameter must locate a real baseline or state that none exists.
-6. **Complexities.** No data, time or memory figure for ARIA appears in this note, and none should be quoted from it.
+1. **Byte geometry.** Whether a byte position exists in a reduced-round ARIA MitM attack where the last unknown key byte reaches the match point through exactly one S-box, with the equivalent-subkey trick collapsing the diffusion layer to a single byte. ARIA's diffusion matrix is an involutory binary matrix, so the algebraic step is available, but the byte-level accounting has not been done.
+2. **Cost.** The per-element cost figures of [1] depend on a packed power table, a DDT-aware Gray-code walk tuned to the AES difference distribution table, and an S-box cache over a four-byte anti-diagonal peel. ARIA's diffusion layer has weight 7 rather than 4 and $S_2$ has its own DDT, so none of these transfers without re-derivation.
+3. **Fingerprint entropy at attack width.** The invariance of $I_{m,n}$ is established here. Its collision entropy at the 12 or 13 byte width an attack would need is not. An earlier-draft measurement at two-byte width and a sample size four to five orders of magnitude below [1] is withdrawn with the v2 draft (see `CHANGELOG.md`); no replacement figure is claimed here.
+4. **A baseline.** Bai and Yu [5] attack 7-round ARIA-192/256 and 8-round ARIA-256. They do not give a 7-round ARIA-128 attack, so any future comparison at that parameter must locate a real baseline or state that none exists.
+5. **Complexities.** No data, time or memory figure for ARIA appears in this note, and none should be quoted from it.
 
 ## 8. Related work and priority
 
@@ -210,7 +209,7 @@ The Mobius Bridge is a fact about the class of S-boxes that factor as an affine 
 
 ## Data and code availability
 
-`verify_bridge_class.py` reproduces every numeric claim above: the class identity across all eight Frobenius exponents, the four ARIA-shaped rows, the exponent facts, the bad-index locations and failure counts, and the fingerprint invariance. Pure Python 3, no dependencies, deterministic apart from seeded draws, exit code 0 iff all five checks pass. Archived run and provenance metadata in `results/`. Lean sources in `AriaMobius.lean` and `Bridge.lean`. Repository: `https://github.com/chokmah-me/aria-moebius`. Paper (Zenodo concept DOI, always latest): https://doi.org/10.5281/zenodo.21705468. Software (concept, always latest): https://doi.org/10.5281/zenodo.21705939. Version-specific DOIs are recorded in the repository file `ZENODO.md`.
+`verify_bridge_class.py` reproduces every numeric claim above: the class identity across all eight Frobenius exponents, the four published ARIA rows, the exponent facts, the bad-index locations and failure counts, and the fingerprint invariance. Pure Python 3, no dependencies, deterministic apart from seeded draws, exit code 0 iff all five checks pass. Archived run and provenance metadata in `results/`. Lean sources in `AriaMobius.lean` and `Bridge.lean`. Repository: `https://github.com/chokmah-me/aria-moebius`. Paper (Zenodo concept DOI, always latest): https://doi.org/10.5281/zenodo.21705468. Software (concept, always latest): https://doi.org/10.5281/zenodo.21705939. Version-specific DOIs are recorded in the repository file `ZENODO.md`.
 
 ## AI utilization statement
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.4 -- 2026-07-30 -- ARIA published constants closed
+
+Section 7 item 1 closed: `verify_bridge_class.py` instantiates Table 1 with
+ARIA's published $A$, $B$, $a=\mathtt{0x63}$, $b=\mathtt{0xE2}$ (recovered from
+the official S-box tables; S1 = AES). Exhaustive check: 0/64770 per row;
+bad indices at $0$, $0$, $0x63$, $0xE2$. Paper Section 6/7 and Table 1 caption
+updated; "ARIA-shaped" wording removed for those rows.
+
 ## v1.0.1 software -- 2026-07-30 -- GitHub + Zenodo software
 
 GitHub Release `v1.0.1` → Zenodo software version DOI

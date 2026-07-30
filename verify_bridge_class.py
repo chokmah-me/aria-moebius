@@ -135,6 +135,13 @@ def rand_affine(rng, const=None):
 
 IDENT = Affine([1 << i for i in range(8)], 0)
 
+# ARIA published affine maps (Kwon et al. / ICISC 2003; recovered from the
+# official S-box tables as L(y)=S(inv-power(y)), bit 0 = LSB).
+# S1 is the AES S-box: A(y) = M_A(y) xor 0x63.
+# S2: B(y) = M_B(y) xor 0xE2 with inner map x |-> inv(x)^8 = Frob^3(inv(x)).
+ARIA_A = Affine([0x1F, 0x3E, 0x7C, 0xF8, 0xF1, 0xE3, 0xC7, 0x8F], 0x63)
+ARIA_B = Affine([0xAC, 0xC5, 0x12, 0xCF, 0x5B, 0x5F, 0x85, 0xEE], 0xE2)
+
 
 # ------------------------------------------------------------ the class
 def make_sbox(L1, j, L2):
@@ -216,36 +223,28 @@ def check_class(rng):
     return ok
 
 
-def aria_variants(rng):
-    """ARIA-shaped class members: published exponents/placement, random linear parts.
+def affine_inverse(M):
+    basis = [M.bwd[1 << i] ^ M.bwd[0] for i in range(8)]
+    return Affine(basis, M.bwd[0])
 
-    Linear parts of A and B are random (not ARIA's published matrices). Only the
-    additive constants are fixed, so that L1^{-1}(0) for the inverse-shape rows
-    lands at a nonzero affine constant as in Table 1.
 
-    Constants:
-      0x63 — ARIA S1 / AES affine constant (Kwon et al., ICISC 2003 / FIPS 197).
-      0x5A — placeholder constant for the S2-shaped map so L1^{-1}(0) is nonzero
-             on the inverse-shape row; NOT claimed as ARIA's published b (paper
-             Section 7 item 1). Linear parts are random either way.
+def aria_variants(_rng=None):
+    """The four ARIA substitution-layer maps with published A, B, a, b [4].
+
+    S1  = A . inv                  -> L1 = id,   j=0, L2 = A  (a = 0x63)
+    S2  = B . Frob^3 . inv         -> L1 = id,   j=3, L2 = B  (b = 0xE2)
+    S1^-1 = inv . A^-1             -> L1 = A^-1, j=0, L2 = id
+    S2^-1 = Frob^5 . inv . B^-1    -> L1 = B^-1, j=5, L2 = id
     """
-    A = rand_affine(rng, const=0x63)      # ARIA-shaped S1 constant; random A
-    B = rand_affine(rng, const=0x5A)      # placeholder S2 constant; random B
-    # S1  = A . inv                       -> L1 = id,        j=0, L2 = A
-    # S2  = B . Frob^3 . inv              -> L1 = id,        j=3, L2 = B
-    # S1^-1 = inv . A^-1                  -> L1 = A^-1,      j=0, L2 = id
-    # S2^-1 = Frob^5 . inv . B^-1         -> L1 = B^-1,      j=5, L2 = id
-    def affine_inverse(M):
-        basis = [M.bwd[1 << i] ^ M.bwd[0] for i in range(8)]
-        return Affine(basis, M.bwd[0])
-    return [("ARIA-shaped S1",     IDENT,               0, A),
-            ("ARIA-shaped S2",     IDENT,               3, B),
-            ("ARIA-shaped S1^-1",  affine_inverse(A),   0, IDENT),
-            ("ARIA-shaped S2^-1",  affine_inverse(B),   5, IDENT)]
+    A, B = ARIA_A, ARIA_B
+    return [("ARIA S1",     IDENT,               0, A),
+            ("ARIA S2",     IDENT,               3, B),
+            ("ARIA S1^-1",  affine_inverse(A),   0, IDENT),
+            ("ARIA S2^-1",  affine_inverse(B),   5, IDENT)]
 
 
 def check_aria(variants):
-    print("\n[2] four ARIA-shaped maps (random linear part, ARIA affine constant)")
+    print("\n[2] the four ARIA substitution-layer maps (published A, B, a, b)")
     ok = True
     for name, L1, j, L2 in variants:
         ok &= bridge_check(name, L1, j, L2)

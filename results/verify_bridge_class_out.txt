@@ -13,11 +13,11 @@ Python 3.14.4, Windows 11
     random trial 0             j=7  mismatches      0 / 64770  (bad indices skipped: 510)  OK
     all 8 Frobenius exponents x 3 random (L1, L2) pairs: OK
 
-[2] four ARIA-shaped maps (random linear part, ARIA affine constant)
-    ARIA-shaped S1             j=0  mismatches      0 / 64770  (bad indices skipped: 510)  OK
-    ARIA-shaped S2             j=3  mismatches      0 / 64770  (bad indices skipped: 510)  OK
-    ARIA-shaped S1^-1          j=0  mismatches      0 / 64770  (bad indices skipped: 510)  OK
-    ARIA-shaped S2^-1          j=5  mismatches      0 / 64770  (bad indices skipped: 510)  OK
+[2] the four ARIA substitution-layer maps (published A, B, a, b)
+    ARIA S1                    j=0  mismatches      0 / 64770  (bad indices skipped: 510)  OK
+    ARIA S2                    j=3  mismatches      0 / 64770  (bad indices skipped: 510)  OK
+    ARIA S1^-1                 j=0  mismatches      0 / 64770  (bad indices skipped: 510)  OK
+    ARIA S2^-1                 j=5  mismatches      0 / 64770  (bad indices skipped: 510)  OK
     key byte kappa cancels in every case: OK
 
 [3] exponent facts underpinning S2 and S2^-1
@@ -26,16 +26,16 @@ Python 3.14.4, Windows 11
     x^223 = (x^-1)^32         : True   (S2^-1 is Frobenius^5 of an inverse)
 
 [4] bad-index location: { L1^-1(0), s }, not { 0, s }
-    ARIA-shaped S1       L1^-1(0) = 0x00   identity fails there for 255 of 255 reference values
-    ARIA-shaped S2       L1^-1(0) = 0x00   identity fails there for 255 of 255 reference values
-    ARIA-shaped S1^-1    L1^-1(0) = 0x63   identity fails there for 254 of 254 reference values
-    ARIA-shaped S2^-1    L1^-1(0) = 0x5a   identity fails there for 254 of 254 reference values
+    ARIA S1              L1^-1(0) = 0x00   identity fails there for 255 of 255 reference values
+    ARIA S2              L1^-1(0) = 0x00   identity fails there for 255 of 255 reference values
+    ARIA S1^-1           L1^-1(0) = 0x63   identity fails there for 254 of 254 reference values
+    ARIA S2^-1           L1^-1(0) = 0xe2   identity fails there for 254 of 254 reference values
 
 [5] I(m,n) = P_m^n / P_n^m invariance under the bridge action
-    ARIA-shaped S1       m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
-    ARIA-shaped S2       m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
-    ARIA-shaped S1^-1    m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
-    ARIA-shaped S2^-1    m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
+    ARIA S1              m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
+    ARIA S2              m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
+    ARIA S1^-1           m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
+    ARIA S2^-1           m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
     all four variants x four exponent pairs: OK
 
-5/5 checks passed in 3.52s.
+5/5 checks passed in 4.59s.
