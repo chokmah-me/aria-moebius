@@ -8,15 +8,10 @@ tagged.
 
 ## [Unreleased]
 
-### Documentation
-
-- Expanded README (setup, status table, paper ↔ Lean map).
-- Added this changelog.
-
 ## [0.2.0] - 2026-07-30
 
 Lean formalization complete against Lean 4.32.2 / Mathlib v4.32.2; verification
-artifacts archived.
+artifacts archived; project docs.
 
 ### Added
 
@@ -24,7 +19,8 @@ artifacts archived.
 - Mathlib dependency pinned at **v4.32.2** (toolchain **leanprover/lean4:v4.32.2**).
 - Archived Python run under `results/` (`verify_aria_bridge_out.txt`, meta JSON).
 - Lean build and axiom audit under `results/` (`lake_build_final.txt`, `axiom_audit.txt`).
-- Minimal then expanded project README.
+- Expanded README (setup, status table, paper ↔ Lean map).
+- `CHANGELOG.md` (Keep a Changelog style).
 
 ### Changed
 
@@ -59,6 +55,6 @@ Initial public draft of the repository.
 - Lean skeleton: `AriaMobius.lean` (designed statements; not yet compiled;
   three deliberate `sorry`s per Appendix A.5).
 
-[Unreleased]: https://github.com/chokmah-me/aria-moebius/compare/fd2078d...HEAD
-[0.2.0]: https://github.com/chokmah-me/aria-moebius/compare/81e1dec...fd2078d
+[Unreleased]: https://github.com/chokmah-me/aria-moebius/compare/96b900c...HEAD
+[0.2.0]: https://github.com/chokmah-me/aria-moebius/compare/81e1dec...96b900c
 [0.1.0]: https://github.com/chokmah-me/aria-moebius/tree/81e1dec
