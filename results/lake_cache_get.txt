@@ -1,0 +1,1 @@
+Mathlib cache get: 8639/8639 files downloaded and decompressed (Lean 4.32.2 / Mathlib v4.32.2).

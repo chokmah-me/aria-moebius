@@ -1,0 +1,24 @@
+AriaMobius Lean build audit
+===========================
+date_utc: 2026-07-30T10:59:40.1698163Z
+lean: Lean (version 4.32.2, x86_64-w64-windows-gnu, commit f3b06c705e6c85f5314019d5d3baab0fec5b580c, Release)
+toolchain: leanprover/lean4:v4.32.2
+mathlib: v4.32.2 (see lake-manifest.json)
+build_exit: 0
+deliberate_sorry_count: 2
+expected_sorry:
+  - mobiusKey_not_affine (A.5.1)
+  - crossRatio_diffMap_invariant (A.5.2)
+closed_since_skeleton:
+  - frobenius8_add (A.5.3)
+
+Axiom print (from lake build):
+warning: AriaMobius.lean:98:8: declaration uses `sorry`
+warning: AriaMobius.lean:259:8: declaration uses `sorry`
+info: AriaMobius.lean:317:0: 'AriaMobius.diffMap_not_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:318:0: 'AriaMobius.J_smul_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:319:0: 'AriaMobius.J_two_mul_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:320:0: 'AriaMobius.draft_ratio_eq_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:321:0: 'AriaMobius.pow_247_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:322:0: 'AriaMobius.frobenius8_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2015 jobs).
