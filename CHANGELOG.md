@@ -55,6 +55,6 @@ Initial public draft of the repository.
 - Lean skeleton: `AriaMobius.lean` (designed statements; not yet compiled;
   three deliberate `sorry`s per Appendix A.5).
 
-[Unreleased]: https://github.com/chokmah-me/aria-moebius/compare/96b900c...HEAD
-[0.2.0]: https://github.com/chokmah-me/aria-moebius/compare/81e1dec...96b900c
+[Unreleased]: https://github.com/chokmah-me/aria-moebius/compare/d5f9b23...HEAD
+[0.2.0]: https://github.com/chokmah-me/aria-moebius/compare/81e1dec...d5f9b23
 [0.1.0]: https://github.com/chokmah-me/aria-moebius/tree/81e1dec
