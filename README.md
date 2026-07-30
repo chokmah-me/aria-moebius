@@ -62,10 +62,11 @@ what linearizes the bridge action.
 ## Release
 
 - Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
-- **DOI:** [10.5281/zenodo.21705469](https://doi.org/10.5281/zenodo.21705469)
+- **DOI (v1.0.1, PDF only):** [10.5281/zenodo.21705738](https://doi.org/10.5281/zenodo.21705738)
+- **Concept DOI:** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468)
 - **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
 - **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/)
-- Code: this repository (`https://github.com/chokmah-me/aria-moebius`)
+- Code / Lean / verifier: this repository only (Zenodo holds the PDF alone)
 
 ## Citation
 
@@ -75,9 +76,10 @@ what linearizes the bridge action.
   title        = {Mobius Bridges for the Invert-and-Affine S-box Class,
                   with the Four ARIA Instantiations},
   year         = {2026},
+  version      = {1.0.1},
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.21705469},
-  url          = {https://doi.org/10.5281/zenodo.21705469}
+  doi          = {10.5281/zenodo.21705738},
+  url          = {https://doi.org/10.5281/zenodo.21705738}
 }
 ```
 
