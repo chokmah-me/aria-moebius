@@ -1,7 +1,7 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below."
-type: article
-title: "Mobius Bridges for the Invert-and-Affine S-box Class, with the Four ARIA Instantiations"
+message: "If you use this work, please cite the paper (preferred) and/or the software."
+type: software
+title: "aria-moebius: Lean formalization and class-bridge verifier"
 authors:
   - family-names: Bilar
     given-names: Daniyel Yaacov
@@ -10,15 +10,28 @@ authors:
 date-released: "2026-07-30"
 version: "1.0.0"
 license: CC-BY-4.0
-doi: "10.5281/zenodo.21705738"
-url: "https://doi.org/10.5281/zenodo.21705738"
+doi: "10.5281/zenodo.21705940"
+url: "https://doi.org/10.5281/zenodo.21705940"
 repository-code: "https://github.com/chokmah-me/aria-moebius"
 keywords:
   - ARIA
   - block cipher
-  - meet-in-the-middle
   - Mobius Bridge
   - GF(2^8)
   - Frobenius
   - Lean 4
   - S-box
+preferred-citation:
+  type: article
+  title: "Mobius Bridges for the Invert-and-Affine S-box Class, with the Four ARIA Instantiations"
+  authors:
+    - family-names: Bilar
+      given-names: Daniyel Yaacov
+      orcid: "https://orcid.org/0000-0002-9040-6914"
+      affiliation: "Chokmah LLC"
+  year: 2026
+  version: "1.0.1"
+  doi: "10.5281/zenodo.21705738"
+  url: "https://doi.org/10.5281/zenodo.21705738"
+  publisher:
+    name: Zenodo

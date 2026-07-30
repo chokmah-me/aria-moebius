@@ -62,13 +62,18 @@ what linearizes the bridge action.
 ## Release
 
 - Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
-- **DOI (v1.0.1, PDF only):** [10.5281/zenodo.21705738](https://doi.org/10.5281/zenodo.21705738)
-- **Concept DOI:** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468)
+- **Paper DOI (PDF only, v1.0.1):** [10.5281/zenodo.21705738](https://doi.org/10.5281/zenodo.21705738)
+- **Paper concept DOI:** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468)
+- **Software DOI (this repo, GitHub `v1.0.0`):** [10.5281/zenodo.21705940](https://doi.org/10.5281/zenodo.21705940)
+- **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases/tag/v1.0.0
 - **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
 - **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/)
-- Code / Lean / verifier: this repository only (Zenodo holds the PDF alone)
+
+Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software DOI zip).
 
 ## Citation
+
+**Paper (preferred for the note):**
 
 ```bibtex
 @misc{bilar2026moebius,
@@ -80,6 +85,20 @@ what linearizes the bridge action.
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.21705738},
   url          = {https://doi.org/10.5281/zenodo.21705738}
+}
+```
+
+**Software (this repository):**
+
+```bibtex
+@software{bilar2026aria_moebius_sw,
+  author       = {Bilar, Daniyel Yaacov},
+  title        = {aria-moebius: Lean formalization and class-bridge verifier},
+  year         = {2026},
+  version      = {v1.0.0},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.21705940},
+  url          = {https://doi.org/10.5281/zenodo.21705940}
 }
 ```
 
