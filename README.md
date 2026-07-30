@@ -59,6 +59,26 @@ paper drafts (v1 REL, v2) are **removed** from the tree; the v2 retraction is
 recorded in `CHANGELOG.md`. The reciprocal and change of variable to `d^-1` is
 what linearizes the bridge action.
 
+## Release
+
+- Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
+- **DOI:** [10.5281/zenodo.21705469](https://doi.org/10.5281/zenodo.21705469)
+- Code: this repository (`https://github.com/chokmah-me/aria-moebius`)
+
+## Citation
+
+```bibtex
+@misc{bilar2026moebius,
+  author       = {Bilar, Daniyel Yaacov},
+  title        = {Mobius Bridges for the Invert-and-Affine S-box Class,
+                  with the Four ARIA Instantiations},
+  year         = {2026},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.21705469},
+  url          = {https://doi.org/10.5281/zenodo.21705469}
+}
+```
+
 ## License
 
 CC BY 4.0.
