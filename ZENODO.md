@@ -3,6 +3,8 @@
 **DOI:** https://doi.org/10.5281/zenodo.21705469  
 **Record:** https://zenodo.org/records/21705469  
 **Code:** https://github.com/chokmah-me/aria-moebius  
+**OSF:** https://osf.io/wy8db/ (DOI 10.17605/OSF.IO/WY8DB)  
+**Catalog:** https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/  
 
 ## Citation
 

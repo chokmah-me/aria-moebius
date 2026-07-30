@@ -63,6 +63,8 @@ what linearizes the bridge action.
 
 - Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
 - **DOI:** [10.5281/zenodo.21705469](https://doi.org/10.5281/zenodo.21705469)
+- **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
+- **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/)
 - Code: this repository (`https://github.com/chokmah-me/aria-moebius`)
 
 ## Citation
