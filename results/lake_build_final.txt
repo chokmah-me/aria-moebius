@@ -1,16 +1,16 @@
-ΓÜá [2014/2015] Built AriaMobius (23s)
-warning: AriaMobius.lean:98:8: declaration uses `sorry`
-warning: AriaMobius.lean:129:0: automatically included section variable(s) unused in theorem `AriaMobius.den_ne_zero`:
+ΓÜá [2014/2015] Built AriaMobius (26s)
+warning: AriaMobius.lean:160:0: automatically included section variable(s) unused in theorem `AriaMobius.den_ne_zero`:
   [CharP F 2]
 consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
   omit [CharP F 2] in theorem ...
 
 Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
-warning: AriaMobius.lean:259:8: declaration uses `sorry`
-info: AriaMobius.lean:317:0: 'AriaMobius.diffMap_not_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: AriaMobius.lean:318:0: 'AriaMobius.J_smul_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: AriaMobius.lean:319:0: 'AriaMobius.J_two_mul_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: AriaMobius.lean:320:0: 'AriaMobius.draft_ratio_eq_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: AriaMobius.lean:321:0: 'AriaMobius.pow_247_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: AriaMobius.lean:322:0: 'AriaMobius.frobenius8_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:388:0: 'AriaMobius.diffMap_not_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:389:0: 'AriaMobius.mobiusKey_not_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:390:0: 'AriaMobius.J_smul_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:391:0: 'AriaMobius.J_two_mul_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:392:0: 'AriaMobius.draft_ratio_eq_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:393:0: 'AriaMobius.crossRatio_diffMap_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:394:0: 'AriaMobius.pow_247_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:395:0: 'AriaMobius.frobenius8_add' depends on axioms: [propext, Classical.choice, Quot.sound]
 Build completed successfully (2015 jobs).

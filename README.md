@@ -18,10 +18,5 @@ lake exe cache get
 lake build
 ```
 
-Open proof obligations (`sorry` in `AriaMobius.lean`, Appendix A.5):
-
-1. `mobiusKey_not_affine`
-2. `crossRatio_diffMap_invariant`
-3. `frobenius8_add`
-
-The file is a designed skeleton; expect tactic fixes against Mathlib before a clean build.
+All theorems in `AriaMobius.lean` are proved (no `sorry`). Axiom audit:
+`propext`, `Classical.choice`, `Quot.sound` only — see `results/axiom_audit.txt`.

@@ -4,9 +4,8 @@
   Formalization accompanying "Transplanting the Mobius Bridge to ARIA"
   (D. Y. Bilar, Chokmah LLC).
 
-  STATUS: building against Lean 4.32.2 / Mathlib v4.32.2. Deliberate open
-  obligations are literal `sorry` and listed in Appendix A.5 of the paper;
-  nothing is disguised as proved.
+  STATUS: builds against Lean 4.32.2 / Mathlib v4.32.2. All theorems in this
+  file are proved (no `sorry`).
 
   Scope. Algebraic identities are stated over an arbitrary field when that is
   correct. The post-inversion difference form `e / (v^2 + v e)` is the
@@ -98,7 +97,39 @@ part would have to be `(1 + k*u)⁻¹`, which is not constant. -/
 theorem mobiusKey_not_affine {k : F} (hk : k ≠ 0)
     (hcard : ∃ a b : F, a ≠ b ∧ a ≠ 0 ∧ b ≠ 0 ∧ 1 + k * a ≠ 0 ∧ 1 + k * b ≠ 0) :
     ¬ ∃ s t : F, ∀ u : F, 1 + k * u ≠ 0 → mobiusKey k u = s * u + t := by
-  sorry -- Appendix A.5, item 1
+  rintro ⟨s, t, h⟩
+  -- At u = 0 the map is 0, so the translation part vanishes.
+  have ht : t = 0 := by
+    have h0 := h 0 (by simp)
+    simpa [mobiusKey] using h0.symm
+  subst ht
+  obtain ⟨a, b, hab, ha0, hb0, hda, hdb⟩ := hcard
+  have ha : a / (1 + k * a) = s * a := by simpa [mobiusKey] using h a hda
+  have hb : b / (1 + k * b) = s * b := by simpa [mobiusKey] using h b hdb
+  -- From a = s * a * (1 + k a) and a ≠ 0, get s * (1 + k a) = 1
+  have sa : s * (1 + k * a) = 1 := by
+    have ha' : a = s * a * (1 + k * a) := (div_eq_iff hda).mp ha
+    apply mul_left_cancel₀ ha0
+    calc
+      a * (s * (1 + k * a)) = s * a * (1 + k * a) := by ring
+      _ = a := ha'.symm
+      _ = a * 1 := by ring
+  have sb : s * (1 + k * b) = 1 := by
+    have hb' : b = s * b * (1 + k * b) := (div_eq_iff hdb).mp hb
+    apply mul_left_cancel₀ hb0
+    calc
+      b * (s * (1 + k * b)) = s * b * (1 + k * b) := by ring
+      _ = b := hb'.symm
+      _ = b * 1 := by ring
+  have hs0 : s ≠ 0 := by
+    intro hs
+    rw [hs, zero_mul] at sa
+    exact one_ne_zero sa.symm
+  -- Then 1 + k a = 1 + k b, so a = b, contradiction.
+  have hden : 1 + k * a = 1 + k * b :=
+    mul_left_cancel₀ hs0 (sa.trans sb.symm)
+  have : k * a = k * b := by linear_combination hden
+  exact hab (mul_left_cancel₀ hk this)
 
 end AnyField
 
@@ -249,7 +280,8 @@ end PowerSums
 
 /-! ## 5. Cross-ratio invariance (Proposition 3.6)
 
-The one substantive obligation left open. Classical; bookkeeping over dens. -/
+Classical; bookkeeping over nonvanishing denominators after substituting
+`diffMap_eq`. -/
 
 section CrossRatio
 variable {F : Type*} [Field F] [CharP F 2]
@@ -257,12 +289,52 @@ variable {F : Type*} [Field F] [CharP F 2]
 def crossRatio (a b c d : F) : F := ((a + c) * (b + d)) / ((a + d) * (b + c))
 
 theorem crossRatio_diffMap_invariant (v : F) (hv : v ≠ 0) (a b c d : F)
-    (hnd : ((a + d) * (b + c)) ≠ 0)
+    (_hnd : ((a + d) * (b + c)) ≠ 0)
     (hva : v + a ≠ 0) (hvb : v + b ≠ 0) (hvc : v + c ≠ 0) (hvd : v + d ≠ 0)
-    (hnd' : ((diffMap v a + diffMap v d) * (diffMap v b + diffMap v c)) ≠ 0) :
+    (_hnd' : ((diffMap v a + diffMap v d) * (diffMap v b + diffMap v c)) ≠ 0) :
     crossRatio (diffMap v a) (diffMap v b) (diffMap v c) (diffMap v d)
       = crossRatio a b c d := by
-  sorry -- Appendix A.5, item 2
+  -- In char 2, Da := v(v+a) etc., and a/Da + c/Dc = v²(a+c)/(Da Dc),
+  -- so the v² factors cancel and the cross-ratio is unchanged.
+  have da := den_ne_zero v a hv hva
+  have db := den_ne_zero v b hv hvb
+  have dc := den_ne_zero v c hv hvc
+  have dd := den_ne_zero v d hv hvd
+  -- Helper: x/Dx + y/Dy = v²(x+y)/(Dx Dy) when Dx = v²+v x, Dy = v²+v y (char 2).
+  have sum_img (x y : F) (hx : v + x ≠ 0) (hy : v + y ≠ 0)
+      (Dx : v ^ 2 + v * x ≠ 0) (Dy : v ^ 2 + v * y ≠ 0) :
+      diffMap v x + diffMap v y =
+        (v ^ 2 * (x + y)) / ((v ^ 2 + v * x) * (v ^ 2 + v * y)) := by
+    rw [diffMap_eq v x hv hx, diffMap_eq v y hv hy]
+    have hsum :
+        x / (v ^ 2 + v * x) + y / (v ^ 2 + v * y) =
+          (x * (v ^ 2 + v * y) + y * (v ^ 2 + v * x)) /
+            ((v ^ 2 + v * x) * (v ^ 2 + v * y)) := by
+      field_simp [Dx, Dy]
+    rw [hsum]
+    -- numerator: v²(x+y) + (xvy + yvx) = v²(x+y) since z+z=0 in char 2
+    have hnum :
+        x * (v ^ 2 + v * y) + y * (v ^ 2 + v * x) = v ^ 2 * (x + y) := by
+      calc
+        x * (v ^ 2 + v * y) + y * (v ^ 2 + v * x)
+            = v ^ 2 * x + v ^ 2 * y + (x * v * y + y * v * x) := by ring
+        _ = v ^ 2 * (x + y) + (x * v * y + x * v * y) := by ring
+        _ = v ^ 2 * (x + y) + 0 := by rw [CharTwo.add_self_eq_zero]
+        _ = v ^ 2 * (x + y) := by ring
+    rw [hnum]
+  have sum_ac := sum_img a c hva hvc da dc
+  have sum_bd := sum_img b d hvb hvd db dd
+  have sum_ad := sum_img a d hva hvd da dd
+  have sum_bc := sum_img b c hvb hvc db dc
+  unfold crossRatio
+  rw [sum_ac, sum_bd, sum_ad, sum_bc]
+  have hv2 : v ^ 2 ≠ 0 := pow_ne_zero 2 hv
+  have hden_num : (v ^ 2 + v * a) * (v ^ 2 + v * c) ≠ 0 := mul_ne_zero da dc
+  have hden_num' : (v ^ 2 + v * b) * (v ^ 2 + v * d) ≠ 0 := mul_ne_zero db dd
+  have hden_den : (v ^ 2 + v * a) * (v ^ 2 + v * d) ≠ 0 := mul_ne_zero da dd
+  have hden_den' : (v ^ 2 + v * b) * (v ^ 2 + v * c) ≠ 0 := mul_ne_zero db dc
+  -- v² factors cancel; result is the original cross-ratio
+  field_simp [hv2, hden_num, hden_num', hden_den, hden_den', da, db, dc, dd]
 
 end CrossRatio
 
@@ -310,14 +382,15 @@ end SecondSbox
 
 /-! ## 7. Axiom audit
 
-Expected output: `propext`, `Classical.choice`, `Quot.sound` only (plus
-`sorryAx` while Appendix A.5 items remain open). In particular no
-`Lean.ofReduceBool`, which `native_decide` would introduce. -/
+Expected output: `propext`, `Classical.choice`, `Quot.sound` only.
+In particular no `Lean.ofReduceBool`, which `native_decide` would introduce. -/
 
 #print axioms diffMap_not_scaling
+#print axioms mobiusKey_not_affine
 #print axioms J_smul_invariant
 #print axioms J_two_mul_trivial
 #print axioms draft_ratio_eq_scalar
+#print axioms crossRatio_diffMap_invariant
 #print axioms pow_247_eq
 #print axioms frobenius8_add
 
