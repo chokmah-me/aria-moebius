@@ -1,0 +1,22 @@
+ΓÜá [2014/2016] Replayed AriaMobius
+warning: AriaMobius.lean:160:0: automatically included section variable(s) unused in theorem `AriaMobius.den_ne_zero`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: AriaMobius.lean:388:0: 'AriaMobius.diffMap_not_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:389:0: 'AriaMobius.mobiusKey_not_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:390:0: 'AriaMobius.J_smul_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:391:0: 'AriaMobius.J_two_mul_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:392:0: 'AriaMobius.draft_ratio_eq_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:393:0: 'AriaMobius.crossRatio_diffMap_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:394:0: 'AriaMobius.pow_247_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:395:0: 'AriaMobius.frobenius8_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+Γä╣ [2015/2016] Built Bridge (18s)
+info: Bridge.lean:156:0: 'AriaMobius.bridge_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:157:0: 'AriaMobius.bridge_frobenius' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:158:0: 'AriaMobius.P_affine' depends on axioms: [propext, Quot.sound]
+info: Bridge.lean:159:0: 'AriaMobius.J_affine_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:160:0: 'AriaMobius.aria_S2inv_exponent' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2016 jobs).

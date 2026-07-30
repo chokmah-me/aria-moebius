@@ -8,6 +8,38 @@ tagged.
 
 ## [Unreleased]
 
+### Planned
+
+- Full paper rewrite around the class theorem (draft still has retracted framing).
+
+## [0.3.0] - 2026-07-30
+
+Class-theorem verifier and Lean bridge addendum; priority search archived.
+
+### Added
+
+- `verify_bridge_class.py` — primary suite (class + four ARIA maps + exponents +
+  bad indices + \(I_{m,n}\)); archived `results/verify_bridge_class_out.txt`.
+- `Bridge.lean` — `bridge_identity`, `bridge_frobenius`, `P_affine`,
+  `J_affine_invariant`, `aria_exponents`, `aria_S2inv_exponent`; Lake target
+  `Bridge`.
+- `results/priority_search_log.md` — no ARIA/Camellia/CLEFIA/SM4 Bridge ports
+  found (NC paper 2026-07-28).
+
+### Changed
+
+- README holds class-theorem spine; documents supersession of pre-reciprocal
+  verifier conclusions.
+- Cut vacuous `bridge_alpha_eq_beta_sq` / theorem-shaped `example`; exponents
+  recorded as `def aria_exponents`.
+
+### Notes
+
+- `verify_aria_bridge.py` retained as **legacy** (pre-reciprocal multiset). Its
+  “fingerprints do not transfer” reading is retracted; the script remains for
+  audit only.
+- No attack parameters / entropy campaign in this tag.
+
 ## [0.2.0] - 2026-07-30
 
 Lean formalization complete against Lean 4.32.2 / Mathlib v4.32.2; verification

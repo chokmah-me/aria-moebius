@@ -1,0 +1,9 @@
+{
+  "timestamp_utc": "2026-07-30T12:02:29.2037412Z",
+  "python_version": "Python 3.14.4",
+  "git_commit": "396d674b7849fd728fa2625f5afd64145f16100c",
+  "seed": 5785,
+  "script": "verify_bridge_class.py",
+  "exit_code": 0,
+  "output_file": "results/verify_bridge_class_out.txt"
+}

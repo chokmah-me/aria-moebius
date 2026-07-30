@@ -1,7 +1,7 @@
 name = "AriaMobius"
 version = "0.1.0"
 keywords = ["math"]
-defaultTargets = ["AriaMobius"]
+defaultTargets = ["AriaMobius", "Bridge"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -16,3 +16,6 @@ rev = "v4.32.2"
 
 [[lean_lib]]
 name = "AriaMobius"
+
+[[lean_lib]]
+name = "Bridge"
