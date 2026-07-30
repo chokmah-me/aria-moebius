@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-07-30T02:20:47.1495795Z",
+  "python_version": "Python 3.14.4",
+  "platform": "Microsoft Windows NT 10.0.26200.0",
+  "git_commit": "81e1dec2b74b74ef1d53cba190cac11fb8f8dd6f",
+  "seed": 5785,
+  "script": "verify_aria_bridge.py",
+  "exit_code": 0,
+  "output_file": "results/verify_aria_bridge_out.txt"
+}

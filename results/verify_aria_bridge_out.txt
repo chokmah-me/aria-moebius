@@ -1,0 +1,29 @@
+verify_aria_bridge.py -- Verification of residual-symmetry claims for the
+Field GF(2^8) mod 0x11b; seed 5785
+
+  [1] difference-of-inverses identity 1/a + 1/b = (a+b)/(ab): 0 counterexamples over all 64770 ordered pairs
+  [2] k -> M_k is a homomorphism from (GF(2^8), xor): True
+      injective (generic orbit size): 256 of 256 -> True
+      => residual key action is the unipotent subgroup U of order 256,
+         isomorphic to (GF(2^8), xor); NOT AGL(1) (order 65280).
+  [3] g is fractional-linear in e: True
+      base points v0 for which g is a pure scaling: 0 of 255
+      => the hypothesis g = s*d + s of the earlier draft is false.
+  [4] power-sum fingerprints (offline difference set: 24 elements, seed 5785)
+      m,  n | P_m/Q_m vals | J vals (scaling) | J vals (true) | J==1 rate
+       1,  2 |          255 |                1 |             1 | 231/231
+       2,  4 |          255 |                1 |             1 | 231/231
+       3,  5 |           85 |                1 |             1 | 231/231
+       3, 17 |           85 |                1 |             1 | 231/231
+       5,  7 |           51 |                1 |            51 | 4/228
+       7, 11 |          255 |                1 |           143 | 1/229
+      11, 13 |          255 |                1 |           142 | 1/230
+      P_m/Q_m never invariant: True
+      J invariant under scaling for every pair: True
+      under the true action J is constant-1 or non-invariant: True
+      => no tested exponent pair yields an informative invariant.
+  [5] cross-ratio over 251 pole-free base points: 1 distinct value(s) = ['0x7e']
+      offline value: 0x7e -> invariant: True
+      base points hitting a pole (e == v0): 4 of 255
+
+5/5 checks passed.
