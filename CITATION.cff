@@ -8,10 +8,10 @@ authors:
     orcid: "https://orcid.org/0000-0002-9040-6914"
     affiliation: "Chokmah LLC"
 date-released: "2026-07-30"
-version: "1.0.1"
+version: "1.0.2"
 license: CC-BY-4.0
-doi: "10.5281/zenodo.21710669"
-url: "https://doi.org/10.5281/zenodo.21710669"
+doi: "10.5281/zenodo.21710834"
+url: "https://doi.org/10.5281/zenodo.21710834"
 repository-code: "https://github.com/chokmah-me/aria-moebius"
 keywords:
   - ARIA
@@ -37,3 +37,4 @@ preferred-citation:
     name: Zenodo
   # Prefer concept DOI 10.5281/zenodo.21705468 when a reader wants "always latest".
   # preferred-citation.doi pins this PDF version (…821).
+

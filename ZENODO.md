@@ -7,7 +7,7 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 | **Paper concept** | [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) | **Stable.** Always resolves to the latest paper PDF. |
 | **Paper (current version)** | [10.5281/zenodo.21710821](https://doi.org/10.5281/zenodo.21710821) | v1.0.4; published ARIA $A,B,a,b$; PDF only. |
 | **Software concept** | [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939) | Always latest software zip. |
-| **Software (current version)** | [10.5281/zenodo.21710669](https://doi.org/10.5281/zenodo.21710669) | From GitHub Release `v1.0.1` (pre-constants-close; see latest GH release). |
+| **Software (current version)** | [10.5281/zenodo.21710834](https://doi.org/10.5281/zenodo.21710834) | From GitHub Release `v1.0.2` (published ARIA constants).. |
 
 ## Paper version history
 
@@ -53,3 +53,4 @@ https://zenodo.org/records/21710821/files/ARIA-Moebius-v1-REL.pdf
 ```powershell
 pwsh -File scripts/check_doi_consistency.ps1
 ```
+

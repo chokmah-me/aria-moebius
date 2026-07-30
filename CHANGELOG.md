@@ -15,7 +15,7 @@ Supersedes `…366`.
 ## v1.0.1 software -- 2026-07-30 -- GitHub + Zenodo software
 
 GitHub Release `v1.0.1` → Zenodo software version DOI
-`10.5281/zenodo.21710669` (concept still `10.5281/zenodo.21705939`).
+`10.5281/zenodo.21710834` (concept still `10.5281/zenodo.21705939`).
 Supersedes software `…940` (v1.0.0).
 
 ## v1.0.3 paper -- 2026-07-30 -- Zenodo version `…366` (concept-only PDF body)
@@ -96,3 +96,4 @@ Negative result. Retracted; see v3.
 
 Machine-generated draft with attack parameter sheets for 7-round ARIA-128 and
 8-round ARIA-256. Withdrawn: garbled bridge identity, nonexistent baseline.
+
