@@ -1,96 +1,80 @@
 # aria-moebius
 
-Formalization and computational checks for
-*[Transplanting the Mobius Bridge to ARIA](PAPER_ARIA_MOBIUS_DRAFT_v2.md)*
-(D. Y. Bilar, Chokmah LLC).
+Formalization and computational checks accompanying work on the
+[Nasr–Carlini Möbius Bridge](https://www.anthropic.com/document/aes_mobius_bridge.pdf)
+and its extension to invert-and-GF(2)-affine S-boxes (including ARIA).
+Author contact for the note: D. Y. Bilar, Chokmah LLC.
 
-The paper derives the residual symmetry that survives field inversion in ARIA’s
-S-boxes: the unipotent subgroup of order 256 in \(\mathrm{PGL}(2,\mathrm{GF}(2^8))\),
-not \(\mathrm{AGL}(1)\). Power-sum ratio fingerprints therefore fail to transfer
-from the AES Mobius Bridge; the cross-ratio does survive. This repository
-ships the verification script and a Lean 4 / Mathlib formalization of the
-algebraic claims.
+**Status (2026-07-30).** The draft text in `PAPER_ARIA_MOBIUS_DRAFT_v2.md` still
+reflects an earlier, **retracted** framing (pre-reciprocal multiset / negative
+result). A corrected class-theorem verifier and Lean addendum are in progress
+from SME; this README is a **holding** description until that rewrite lands.
+See [`results/priority_search_log.md`](results/priority_search_log.md) for the
+priority search (no public ARIA/Camellia/CLEFIA/SM4 Bridge ports found as of
+2026-07-30; NC paper dated 2026-07-28).
 
 **No attack complexities for ARIA are claimed.**
+
+## Intended technical spine (post-rewrite)
+
+Any S-box of the form \(S = L_2 \circ \mathrm{Frob}^j \circ \mathrm{inv} \circ L_1\)
+admits an affine bridge after the Nasr–Carlini reciprocal change of variable,
+with \(\beta = L_1(s)^{2^j}\) and \(\alpha = \beta^2\). ARIA’s four maps
+(\(S_1, S_2, S_1^{-1}, S_2^{-1}\)) are instances; bad indices for the inverse
+maps sit at \(\{c, s\}\) (affine constant), not \(\{0, s\}\).
+
+Existing Lean in `AriaMobius.lean` still proves load-bearing field lemmas
+(including Frobenius facts for \(S_2\)); some results (e.g. geometry in the
+pre-reciprocal chart) become **intermediate**, not a refutation of power-sum
+fingerprints under the affine action.
 
 ## Contents
 
 | Path | Role |
 |---|---|
-| `PAPER_ARIA_MOBIUS_DRAFT_v2.md` | Paper draft |
-| `verify_aria_bridge.py` | Exhaustive GF(\(2^8\)) checks (pure Python 3, no deps) |
-| `AriaMobius.lean` | Lean 4 formalization (Mathlib) |
-| `lakefile.toml`, `lean-toolchain`, `lake-manifest.json` | Lake / Mathlib pin (Lean **4.32.2**, Mathlib **v4.32.2**) |
-| `results/` | Archived Python run, Lean build log, axiom audit |
+| `PAPER_ARIA_MOBIUS_DRAFT_v2.md` | Paper draft (**stale framing** — rewrite pending) |
+| `verify_aria_bridge.py` | Python checks (**pre-correction** script still on `master`; class-theorem verifier pending merge) |
+| `AriaMobius.lean` | Lean 4 / Mathlib formalization (base module; affine-bridge addendum pending merge) |
+| `lakefile.toml`, `lean-toolchain`, `lake-manifest.json` | Lake pin (Lean **4.32.2**, Mathlib **v4.32.2**) |
+| `results/` | Archived runs, axiom audit, [priority search log](results/priority_search_log.md) |
 | `CHANGELOG.md` | Version history |
 
 ## Python verification
-
-Reproduces every numeric claim in the paper: difference-of-inverses identity,
-key-action homomorphism and injectivity, scaling refutation over all 255 base
-points, power-sum fingerprint table, and cross-ratio invariance.
 
 ```powershell
 python verify_aria_bridge.py
 ```
 
-- Deterministic (seed **5785** for the offline difference set).
-- Exit code **0** iff all five checks pass.
-- Archived output: [`results/verify_aria_bridge_out.txt`](results/verify_aria_bridge_out.txt)
-  (meta in `results/verify_aria_bridge_meta.json`).
+- Pure Python 3, no dependencies; exit **0** iff checks pass.
+- Archived output of the **legacy** script:  
+  [`results/verify_aria_bridge_out.txt`](results/verify_aria_bridge_out.txt)  
+  (seed 5785; 5/5 on that script’s claims — **not** the class-theorem suite).
 
-Last archived run: **5/5 checks passed**.
+Class-theorem suite (SME, 5/5, exit 0; pending drop into this repo): class over
+all 8 Frobenius exponents × random affines; four ARIA maps; exponent facts
+\(247/223\); bad-index locus; \(I(m,n)\) invariance. Cosmetic: check [4] print
+“255 of 254” to fix on merge.
 
 ## Lean 4 / Mathlib
 
-Algebraic identities are machine-checked. Finite GF(\(2^8\)) enumeration stays
-in Python by design (no `native_decide` / `Lean.ofReduceBool`).
-
-### Requirements
-
-Install [elan](https://lean-lang.org/install/) (Lean version manager). On Windows:
-
 ```powershell
-curl -O --location https://elan.lean-lang.org/elan-init.ps1
-powershell -ExecutionPolicy Bypass -Command "& { .\elan-init.ps1 -NoPrompt 1 -DefaultToolchain stable }"
-# then open a new shell, or: $env:Path = "$env:USERPROFILE\.elan\bin;" + $env:Path
-```
-
-### Build
-
-```powershell
-lake exe cache get   # download Mathlib oleans (once)
+# elan: https://lean-lang.org/install/
+lake exe cache get
 lake build
 ```
 
-### Status
-
-- **All theorems in `AriaMobius.lean` are proved** (no `sorry`).
-- Axiom audit (expected only): `propext`, `Classical.choice`, `Quot.sound`.
-- See [`results/axiom_audit.txt`](results/axiom_audit.txt) and
-  [`results/lake_build_final.txt`](results/lake_build_final.txt).
-
-### Correspondence (paper ↔ Lean)
-
-| Paper | Lean name | Notes |
-|---|---|---|
-| Prop 3.2 (inner identity) | `inv_add_inv_eq` | any field |
-| Prop 3.1 | `key_add_inv`, `U_mul`, `U_one`, `U_det`, `U_injective` | any field |
-| Cor 3.1.1 | `mobiusKey_not_affine` | any field |
-| Prop 3.2 / 3.3 (diff map) | `diffMap_eq`, `diffMap_not_scaling` | char 2 |
-| Prop 3.4 | `J_smul_invariant`, `draft_ratio_eq_scalar` | any field |
-| Thm 3.5 rows (1,2),(2,4) | `P_two_mul`, `J_two_mul_trivial` | char 2 |
-| Thm 3.5 other rows | — | Python only |
-| Prop 3.6 | `crossRatio_diffMap_invariant` | char 2 |
-| Prop 4.1 | `pow_247_eq`, `frobenius8_add` | GF(\(2^8\)) |
+- Base file `AriaMobius.lean`: builds clean; axioms `propext`, `Classical.choice`,
+  `Quot.sound` only — see [`results/axiom_audit.txt`](results/axiom_audit.txt).
+- Addendum (pending merge): `P_affine`, `J_affine_invariant`, `bridge_identity`,
+  `bridge_frobenius`, `aria_S2inv_exponent`. Drop `bridge_alpha_eq_beta_sq` if
+  present as bare `rfl`; record ARIA exponents as `def`, not a vacuous `example`.
 
 ## License
 
 Paper text: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-(see draft header). Code in this repository accompanies the paper; reuse under
-the same terms unless a separate license file is added later.
+(see draft header). Code accompanies the note unless a separate license is added.
 
 ## Citation
 
-See the paper draft for author, date, and DOI status (DOI may still be TODO).
+See the paper draft for author/date/DOI (DOI may still be TODO).  
 Repository: https://github.com/chokmah-me/aria-moebius
