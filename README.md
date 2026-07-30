@@ -17,22 +17,32 @@ MitM parameter sheet.
 
 Any S-box of the form
 
-\[
-S = L_2 \circ \mathrm{Frob}^{j} \circ \mathrm{inv} \circ L_1
-\]
+```text
+S = L2 ∘ Frob^j ∘ inv ∘ L1
+```
 
-(\(L_1,L_2\) GF(2)-affine bijections, \(\mathrm{Frob}(x)=x^2\), \(\mathrm{inv}(0):=0\))
+where `L1`, `L2` are GF(2)-affine bijections, `Frob(x) = x²`, and `inv(0) := 0`,
 admits an **AGL(1)** bridge after the Nasr–Carlini reciprocal reparametrization:
 
-\[
-\beta = t^{2^{j}},\quad \alpha = \beta^{2},\quad
-g = \alpha\cdot D \oplus \beta,\quad
-D = \bigl(L_1^{\mathrm{lin}}(d)\bigr)^{-2^{j}},\quad t = L_1(s).
-\]
+```text
+t     = L1(s)
+β     = t^(2^j)
+α     = β²
+D     = (L1_lin(d))^(-2^j)
+g     = α · D  ⊕  β
+```
 
-Bad indices (where `inv(0):=0` breaks the identity) are \(\{L_1^{-1}(0),\, s\}\),
-not always \(\{0,s\}\). ARIA instantiates four members (`j ∈ {0,3,0,5}` for
-\(S_1,S_2,S_1^{-1},S_2^{-1}\)).
+Bad indices (where `inv(0) := 0` breaks the identity) are
+
+```text
+{ L1⁻¹(0),  s }
+```
+
+not always `{0, s}`. ARIA instantiates four members with Frobenius exponents
+
+```text
+j ∈ {0, 3, 0, 5}    for    S1, S2, S1⁻¹, S2⁻¹
+```
 
 Priority search (2026-07-30): no public Bridge port to ARIA/Camellia/CLEFIA/SM4
 — see [`results/priority_search_log.md`](results/priority_search_log.md).
@@ -41,7 +51,7 @@ Priority search (2026-07-30): no public Bridge port to ARIA/Camellia/CLEFIA/SM4
 
 | Path | Role |
 |---|---|
-| `verify_bridge_class.py` | **Primary** verifier: class + four ARIA maps + exponents + bad indices + \(I_{m,n}\) |
+| `verify_bridge_class.py` | **Primary** verifier: class + four ARIA maps + exponents + bad indices + `I(m,n)` |
 | `verify_aria_bridge.py` | **Legacy** pre-reciprocal script (superseded; kept for audit) |
 | `AriaMobius.lean` | Base Lean module (field lemmas, intermediate chart geometry) |
 | `Bridge.lean` | Addendum: `bridge_identity`, `bridge_frobenius`, `P_affine`, `J_affine_invariant`, ARIA exponents |
@@ -60,9 +70,9 @@ python verify_bridge_class.py
 - Archived: [`results/verify_bridge_class_out.txt`](results/verify_bridge_class_out.txt)
 
 Checks: (1) class over all 8 Frobenius exponents × 3 random affine pairs;
-(2) four ARIA maps; (3) \(x^{247}=(x^{-1})^8\), \(247\cdot223\equiv1\pmod{255}\),
-\(x^{223}=(x^{-1})^{32}\); (4) bad indices at \(L_1^{-1}(0)\); (5) \(I(m,n)\)
-invariant under the bridge action.
+(2) four ARIA maps; (3) `x^247 = (x⁻¹)^8`, `247·223 ≡ 1 (mod 255)`,
+`x^223 = (x⁻¹)^32`; (4) bad indices at `L1⁻¹(0)`; (5) `I(m,n)` invariant
+under the bridge action.
 
 ## Lean 4 / Mathlib
 
@@ -75,7 +85,7 @@ lake build          # AriaMobius + Bridge
 | Module | Status |
 |---|---|
 | `AriaMobius.lean` | Builds; intermediate pre-reciprocal geometry + Frobenius facts |
-| `Bridge.lean` | Builds; load-bearing bridge + affine \(P,J\) + \(S_2^{-1}\) exponent |
+| `Bridge.lean` | Builds; load-bearing bridge + affine `P`/`J` + S2⁻¹ exponent |
 
 Axioms (both modules): `propext`, `Classical.choice`, `Quot.sound` only.
 See [`results/lake_build_bridge.txt`](results/lake_build_bridge.txt).
