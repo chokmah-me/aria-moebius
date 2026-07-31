@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-07-31 -- Lean: full class bridge formalization (Thm 3.1 + Cor 3.2 + §5)
+
+Formalized the paper’s load-bearing algebraic spine in `Bridge.lean` (no `sorry`;
+axioms: `propext` / `Classical.choice` / `Quot.sound` only).
+
+- **Theorem 3.1:** `class_bridge` / `class_bridge'` for
+  $S = L_2 \circ \mathrm{Frob}^j \circ \mathrm{inv} \circ L_1$
+  (`AffineBij`, `classSBox`, outer-affine strip, reduce to `bridge_frobenius`)
+- **§5 bad indices:** `L1_inv_zero` is the unique root of $L_1$; uniqueness and
+  identity special case (`L1_inv_zero_of_id` recovers the NC index $0$)
+- **Corollary 3.2:** `J_class_invariant` — online class-S-box fingerprint equals
+  the offline multiset fingerprint (`class_bridge_pair_diff` → `J_affine_invariant`)
+- Docs: README paper↔Lean map; `results/bridge_axiom_audit.txt` refreshed
+
+Python `verify_bridge_class.py` remains the exhaustive Table 1 oracle. Concrete
+ARIA matrices in Lean are optional later work.
+
 ## v1.0.4 -- 2026-07-30 -- ARIA published constants closed + Zenodo `…821`
 
 Section 7 item 1 closed: `verify_bridge_class.py` instantiates Table 1 with

@@ -53,6 +53,25 @@ Both `AriaMobius.lean` and `Bridge.lean` build clean. Axiom set: `propext`,
 `Classical.choice`, `Quot.sound` only (no `native_decide`). See
 `results/lake_build_bridge.txt` and `results/bridge_axiom_audit.txt`.
 
+**Formalized in Lean:** paper Theorem 3.1 (class bridge for every invert-and-affine
+S-box), Corollary 3.2 (class fingerprint invariance end-to-end), and §5 bad-index
+location at $L_1^{-1}(0)$. Exhaustive ARIA Table 1 checks stay in Python.
+
+**Paper ↔ Lean map (load-bearing):**
+
+| Paper | Lean |
+|---|---|
+| Inner reciprocal chart | `bridge_identity`, `bridge_frobenius` |
+| Theorem 3.1 (class bridge) | `class_bridge` / `class_bridge'` |
+| Pairwise β-cancel | `class_bridge_pair_diff` |
+| Corollary 3.2 (class fingerprint) | `J_class_invariant` → `J_affine_invariant` |
+| §5 bad index \(L_1^{-1}(0)\) | `L1_inv_zero`, `apply_L1_inv_zero`, `eq_L1_inv_zero_of_apply_eq_zero` |
+| ARIA S2 / S2⁻¹ exponents | `pow_247_eq`, `aria_S2inv_exponent` |
+
+`class_bridge` is stated for arbitrary char-2 fields and additive automorphisms
+(`AffineBij`), matching the GF(2)-linear layers of AES/ARIA-style S-boxes.
+Exhaustive Table 1 checks remain in `verify_bridge_class.py`.
+
 ## Superseded
 
 `verify_aria_bridge.py` remains as a legacy pre-reciprocal script only. Earlier
