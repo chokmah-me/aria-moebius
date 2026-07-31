@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased -- Lean L1 hygiene
+
+- `class_bridge_with_key`: paper form with key byte \(\kappa\) (cancels via `key_cancels`)
+- `inv_pow_two_pow` / `inv0_pow_two_pow`: Frob of inv = inv of Frob
+- §5 set: `IsBadIndex`, `bad_index_set`, `mem_bad_index_set_iff`
+
 ## 2026-07-31 -- Lean: full class bridge formalization (Thm 3.1 + Cor 3.2 + §5)
 
 Formalized the paper’s load-bearing algebraic spine in `Bridge.lean` (no `sorry`;

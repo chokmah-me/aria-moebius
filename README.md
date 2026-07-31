@@ -62,10 +62,10 @@ location at $L_1^{-1}(0)$. Exhaustive ARIA Table 1 checks stay in Python.
 | Paper | Lean |
 |---|---|
 | Inner reciprocal chart | `bridge_identity`, `bridge_frobenius` |
-| Theorem 3.1 (class bridge) | `class_bridge` / `class_bridge'` |
+| Theorem 3.1 (class bridge) | `class_bridge` / `class_bridge'` / `class_bridge_with_key` |
 | Pairwise β-cancel | `class_bridge_pair_diff` |
 | Corollary 3.2 (class fingerprint) | `J_class_invariant` → `J_affine_invariant` |
-| §5 bad index \(L_1^{-1}(0)\) | `L1_inv_zero`, `apply_L1_inv_zero`, `eq_L1_inv_zero_of_apply_eq_zero` |
+| §5 bad indices \(\{L_1^{-1}(0),s\}\) | `L1_inv_zero`, `IsBadIndex`, `bad_index_set`, `mem_bad_index_set_iff` |
 | ARIA S2 / S2⁻¹ exponents | `pow_247_eq`, `aria_S2inv_exponent` |
 
 `class_bridge` is stated for arbitrary char-2 fields and additive automorphisms

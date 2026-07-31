@@ -238,6 +238,27 @@ theorem class_bridge' (L1 L2 : AffineBij F) (j : ℕ) (s d : F)
         bridgeBeta (L1.apply s) j :=
   class_bridge L1 L2 j s d ht hd hb
 
+/-- Paper form with key byte: \(v = S(a)\oplus\kappa\); κ cancels before the strip. -/
+theorem class_bridge_with_key (L1 L2 : AffineBij F) (j : ℕ) (s d κ : F)
+    (ht : L1.apply s ≠ 0) (hd : d ≠ 0)
+    (hb : L1.apply (s + d) ≠ 0) :
+    (L2.M.symm
+      ((classSBox L1 L2 j s + κ) + (classSBox L1 L2 j (s + d) + κ)))⁻¹ =
+      bridgeAlpha (L1.apply s) j * bridgeD (L1.M d) j +
+        bridgeBeta (L1.apply s) j := by
+  have hκ := key_cancels (classSBox L1 L2 j) s (s + d) κ
+  rw [hκ]
+  exact class_bridge' L1 L2 j s d ht hd hb
+
+/-- Frobenius power of an inverse is the inverse of the Frobenius power. -/
+theorem inv_pow_two_pow (x : F) (hx : x ≠ 0) (j : ℕ) :
+    (x⁻¹) ^ (2 ^ j) = (x ^ (2 ^ j))⁻¹ := by
+  simp [inv_pow]
+
+theorem inv0_pow_two_pow (x : F) (hx : x ≠ 0) (j : ℕ) :
+    (inv0 x) ^ (2 ^ j) = (x ^ (2 ^ j))⁻¹ := by
+  rw [inv0_of_ne hx, inv_pow_two_pow x hx j]
+
 /-- Pairwise difference of online bridge points: the translation `β` cancels. -/
 theorem class_bridge_pair_diff (L1 L2 : AffineBij F) (j : ℕ) (s d₁ d₂ : F)
     (ht : L1.apply s ≠ 0)
@@ -323,6 +344,39 @@ theorem L1_inv_zero_of_id (L1 : AffineBij F)
     L1_inv_zero L1 = 0 := by
   unfold L1_inv_zero
   simp [hM, hc]
+
+/-- Absolute indices that break the bridge hypotheses for reference `s`:
+paper §5 set \(\{ L_1^{-1}(0),\ s \}\). -/
+def IsBadIndex (L1 : AffineBij F) (s a : F) : Prop :=
+  a = L1_inv_zero L1 ∨ a = s
+
+theorem isBadIndex_L1_inv_zero (L1 : AffineBij F) (s : F) :
+    IsBadIndex L1 s (L1_inv_zero L1) :=
+  Or.inl rfl
+
+theorem isBadIndex_ref (L1 : AffineBij F) (s : F) :
+    IsBadIndex L1 s s :=
+  Or.inr rfl
+
+/-- If the absolute index is the L₁-root, the class-bridge nonzero-image hyp fails. -/
+theorem class_bridge_hyp_fails_of_isBadIndex_root (L1 : AffineBij F) (s a : F)
+    (h : a = L1_inv_zero L1) :
+    L1.apply a = 0 := by
+  rw [h, apply_L1_inv_zero]
+
+/-- Offset `d = 0` is excluded by `class_bridge` (`hd : d ≠ 0`); it is the
+case of absolute index equal to the reference `s`. -/
+theorem offset_zero_is_ref (s : F) : s + (0 : F) = s := by ring
+
+/-- Finite bad set (classical `DecidableEq` for `Finset` literals). -/
+noncomputable def bad_index_set (L1 : AffineBij F) (s : F) : Finset F := by
+  classical
+  exact ({L1_inv_zero L1, s} : Finset F)
+
+theorem mem_bad_index_set_iff (L1 : AffineBij F) (s a : F) :
+    a ∈ bad_index_set L1 s ↔ IsBadIndex L1 s a := by
+  classical
+  simp [bad_index_set, IsBadIndex, or_comm]
 
 end ClassBridge
 
@@ -441,9 +495,11 @@ end AriaVariants
 #print axioms bridge_frobenius
 #print axioms class_bridge
 #print axioms class_bridge'
+#print axioms class_bridge_with_key
 #print axioms class_bridge_pair_diff
 #print axioms apply_L1_inv_zero
 #print axioms eq_L1_inv_zero_of_apply_eq_zero
+#print axioms mem_bad_index_set_iff
 #print axioms J_class_invariant
 #print axioms key_cancels
 #print axioms P_affine
