@@ -81,7 +81,7 @@ foreach ($rel in $needCurrent) {
 }
 
 # Paper body should cite concept, not a bare superseded version as sole DOI
-foreach ($paper in @("ARIA-Moebius-v1-REL.md", "PAPER_ARIA_MOBIUS_DRAFT_v3.md")) {
+foreach ($paper in @("ARIA-Moebius-v1-REL.md")) {
     $p = Join-Path $RepoRoot $paper
     if (-not (Test-Path $p)) { continue }
     $c = Get-Content -LiteralPath $p -Raw

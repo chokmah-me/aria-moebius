@@ -1,0 +1,179 @@
+{
+  "ok": true,
+  "project": "C:\\Users\\Elke Shayna\\Documents\\00Dev\\aria-moebius",
+  "lake": "C:\\Users\\Elke Shayna\\.elan\\bin\\lake.EXE",
+  "target": "Bridge",
+  "build_exit": 0,
+  "build_ms": 119006,
+  "sorry_hits": [],
+  "native_decide_hits": [],
+  "axiom_entries": [
+    {
+      "theorem": "AriaMobius.diffMap_not_scaling",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.mobiusKey_not_affine",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.J_smul_invariant",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.J_two_mul_trivial",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.draft_ratio_eq_scalar",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.crossRatio_diffMap_invariant",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.pow_247_eq",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.frobenius8_add",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.bridge_identity",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.bridge_frobenius",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.class_bridge",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.class_bridge_with_key",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.class_bridge_pair_diff",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.apply_L1_inv_zero",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.eq_L1_inv_zero_of_apply_eq_zero",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.mem_bad_index_set_iff",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.J_class_invariant",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.key_cancels",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.P_affine",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.J_affine_invariant",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "theorem": "AriaMobius.aria_S2inv_exponent",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "axiom_violations": [],
+  "errors": [],
+  "timestamp_utc": "2026-08-02T23:54:47.779524+00:00"
+}

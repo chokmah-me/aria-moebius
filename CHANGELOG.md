@@ -1,10 +1,16 @@
 # Changelog
 
-## Unreleased -- Lean L1 hygiene
+## v1.0.5 -- 2026-07-31 -- Paper prep: full Lean spine in Appendix A.2 (Zenodo DOI pending)
 
-- `class_bridge_with_key`: paper form with key byte \(\kappa\) (cancels via `key_cancels`)
-- `inv_pow_two_pow` / `inv0_pow_two_pow`: Frob of inv = inv of Frob
-- §5 set: `IsBadIndex`, `bad_index_set`, `mem_bad_index_set_iff`
+Paper source freeze for deposit (you rebuild the PDF from `ARIA-Moebius-v1-REL.md`).
+
+- Appendix **A.2** rewritten: Thm 3.1 → `class_bridge` / `class_bridge_with_key`; Cor 3.2 → `J_class_invariant`; §5 → `L1_inv_zero` / `IsBadIndex` / `bad_index_set`
+- Abstract and contributions aligned with SME greenlight formalization
+- Ref [5] Bai–Yu: LNCS vol. 8783
+- Removed dual draft `PAPER_ARIA_MOBIUS_DRAFT_v3.md` (REL.md is sole markdown source)
+- Prior Lean commits: full class formalization (`1ce031a`) + L1 hygiene (`a35f6b9`)
+
+**Zenodo paper version DOI:** TBD after mint under concept `…468` (supersedes `…821` / v1.0.4).
 
 ## 2026-07-31 -- Lean: full class bridge formalization (Thm 3.1 + Cor 3.2 + §5)
 

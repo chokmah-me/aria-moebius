@@ -2,7 +2,8 @@
 
 Formalization and computational checks for
 *[Mobius Bridges for the Invert-and-Affine S-box Class, with the Four ARIA
-Instantiations](PAPER_ARIA_MOBIUS_DRAFT_v3.md)* (D. Y. Bilar, Chokmah LLC).
+Instantiations](ARIA-Moebius-v1-REL.md)* (D. Y. Bilar, Chokmah LLC), paper
+**v1.0.5** (source freeze; PDF rebuild and Zenodo version DOI pending deposit).
 
 The Mobius Bridge of Nasr and Carlini is not specific to the AES S-box. It holds
 for every S-box of the form `L2 . Frob^j . inv . L1` with `L1`, `L2` GF(2)-affine
@@ -19,7 +20,8 @@ what a complexity claim would first require.
 
 | Path | Role |
 |---|---|
-| `PAPER_ARIA_MOBIUS_DRAFT_v3.md` | Paper draft (current) |
+| `ARIA-Moebius-v1-REL.md` | Paper source (v1.0.5 prep; sole markdown) |
+| `ARIA-Moebius-v1-REL.pdf` | Paper PDF (rebuild from REL.md before deposit) |
 | `verify_bridge_class.py` | Exhaustive GF(2^8) checks (pure Python 3, no deps) |
 | `verify_aria_bridge.py` | Legacy pre-reciprocal verifier (superseded) |
 | `Bridge.lean` | Lean 4 formalization of the class bridge and affine invariance |
@@ -83,7 +85,7 @@ what linearizes the bridge action.
 
 - Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
 - **Paper concept DOI (prefer for citation):** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) — always latest PDF
-- **Paper version DOI (this PDF):** [10.5281/zenodo.21710821](https://doi.org/10.5281/zenodo.21710821) (v1.0.4)
+- **Paper version DOI (last deposited PDF):** [10.5281/zenodo.21710821](https://doi.org/10.5281/zenodo.21710821) (v1.0.4; superseded by v1.0.5 after next mint)
 - **Software concept DOI:** [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939)
 - **Software version DOI:** [10.5281/zenodo.21710834](https://doi.org/10.5281/zenodo.21710834) (advances with GH releases)
 - **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases
@@ -102,11 +104,11 @@ Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software
   title        = {Mobius Bridges for the Invert-and-Affine S-box Class,
                   with the Four ARIA Instantiations},
   year         = {2026},
-  version      = {1.0.4},
+  version      = {1.0.5},
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.21705468},
   url          = {https://doi.org/10.5281/zenodo.21705468},
-  note         = {Concept DOI (always latest). Pinned PDF: 10.5281/zenodo.21710821}
+  note         = {Concept DOI (always latest). Prior PDF pin v1.0.4: 10.5281/zenodo.21710821; v1.0.5 version DOI after deposit}
 }
 ```
 

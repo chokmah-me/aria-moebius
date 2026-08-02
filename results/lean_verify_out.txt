@@ -1,0 +1,101 @@
+lean-proof-forge verify  ok=True  exit=0
+project: C:\Users\Elke Shayna\Documents\00Dev\aria-moebius
+lake: C:\Users\Elke Shayna\.elan\bin\lake.EXE
+target: Bridge
+build_exit: 0
+build_ms: 119006
+sorry_hits: 0
+native_decide_hits: 0
+axiom_entries: 21
+axiom_violations: 0
+
+--- lake log (tail) ---
+⚠ [2014/2016] Replayed AriaMobius
+warning: AriaMobius.lean:160:0: automatically included section variable(s) unused in theorem `AriaMobius.den_ne_zero`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: AriaMobius.lean:388:0: 'AriaMobius.diffMap_not_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:389:0: 'AriaMobius.mobiusKey_not_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:390:0: 'AriaMobius.J_smul_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:391:0: 'AriaMobius.J_two_mul_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:392:0: 'AriaMobius.draft_ratio_eq_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:393:0: 'AriaMobius.crossRatio_diffMap_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:394:0: 'AriaMobius.pow_247_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AriaMobius.lean:395:0: 'AriaMobius.frobenius8_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2015/2016] Replayed Bridge
+warning: Bridge.lean:92:0: automatically included section variable(s) unused in theorem `AriaMobius.inv0_of_ne`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Bridge.lean:118:0: automatically included section variable(s) unused in theorem `AriaMobius.bridgeAlpha_eq_beta_sq`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Bridge.lean:254:0: automatically included section variable(s) unused in theorem `AriaMobius.inv_pow_two_pow`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Bridge.lean:254:33: Variable name `hx` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Bridge.lean:342:0: automatically included section variable(s) unused in theorem `AriaMobius.L1_inv_zero_of_id`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Bridge.lean:353:0: automatically included section variable(s) unused in theorem `AriaMobius.isBadIndex_L1_inv_zero`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Bridge.lean:357:0: automatically included section variable(s) unused in theorem `AriaMobius.isBadIndex_ref`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Bridge.lean:362:70: Variable name `s` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Bridge.lean:369:0: automatically included section variable(s) unused in theorem `AriaMobius.offset_zero_is_ref`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Bridge.lean:376:0: automatically included section variable(s) unused in theorem `AriaMobius.mem_bad_index_set_iff`:
+  [CharP F 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP F 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: Bridge.lean:494:0: 'AriaMobius.bridge_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:495:0: 'AriaMobius.bridge_frobenius' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:496:0: 'AriaMobius.class_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:497:0: 'AriaMobius.class_bridge'' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:498:0: 'AriaMobius.class_bridge_with_key' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:499:0: 'AriaMobius.class_bridge_pair_diff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:500:0: 'AriaMobius.apply_L1_inv_zero' depends on axioms: [propext, Quot.sound]
+info: Bridge.lean:501:0: 'AriaMobius.eq_L1_inv_zero_of_apply_eq_zero' depends on axioms: [propext, Quot.sound]
+info: Bridge.lean:502:0: 'AriaMobius.mem_bad_index_set_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:503:0: 'AriaMobius.J_class_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:504:0: 'AriaMobius.key_cancels' depends on axioms: [propext, Quot.sound]
+info: Bridge.lean:505:0: 'AriaMobius.P_affine' depends on axioms: [propext, Quot.sound]
+info: Bridge.lean:506:0: 'AriaMobius.J_affine_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Bridge.lean:507:0: 'AriaMobius.aria_S2inv_exponent' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2016 jobs).
