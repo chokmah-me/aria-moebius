@@ -1,8 +1,14 @@
 # Changelog
 
-## v1.0.5 -- 2026-07-31 -- Paper prep: full Lean spine in Appendix A.2 (Zenodo DOI pending)
+## v1.0.3 software -- 2026-08-03 -- GitHub + Zenodo software
 
-Paper source freeze for deposit (you rebuild the PDF from `ARIA-Moebius-v1-REL.md`).
+GitHub Release `v1.0.3` → Zenodo software version DOI
+`10.5281/zenodo.21765202` (concept still `10.5281/zenodo.21705939`).
+Supersedes software `…834` (v1.0.2). Full class formalization + paper v1.0.5 alignment.
+
+## v1.0.5 -- 2026-08-03 -- Paper: full Lean spine; Appendix A.2; Zenodo `…164`
+
+Deposited PDF under concept `…468`.
 
 - Appendix **A.2** rewritten: Thm 3.1 → `class_bridge` / `class_bridge_with_key`; Cor 3.2 → `J_class_invariant`; §5 → `L1_inv_zero` / `IsBadIndex` / `bad_index_set`
 - Abstract and contributions aligned with SME greenlight formalization

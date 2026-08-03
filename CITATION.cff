@@ -7,11 +7,11 @@ authors:
     given-names: Daniyel Yaacov
     orcid: "https://orcid.org/0000-0002-9040-6914"
     affiliation: "Chokmah LLC"
-date-released: "2026-07-30"
-version: "1.0.2"
+date-released: "2026-08-03"
+version: "1.0.3"
 license: CC-BY-4.0
-doi: "10.5281/zenodo.21710834"
-url: "https://doi.org/10.5281/zenodo.21710834"
+doi: "10.5281/zenodo.21765202"
+url: "https://doi.org/10.5281/zenodo.21765202"
 repository-code: "https://github.com/chokmah-me/aria-moebius"
 keywords:
   - ARIA

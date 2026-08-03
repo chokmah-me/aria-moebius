@@ -7,7 +7,7 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 | **Paper concept** | [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) | **Stable.** Always resolves to the latest paper PDF. |
 | **Paper (current version)** | [10.5281/zenodo.21765164](https://doi.org/10.5281/zenodo.21765164) | v1.0.5; full Lean class formalization (Thm 3.1 / Cor 3.2 / §5); PDF only. |
 | **Software concept** | [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939) | Always latest software zip. |
-| **Software (current version)** | [10.5281/zenodo.21710834](https://doi.org/10.5281/zenodo.21710834) | From GitHub Release `v1.0.2` (published ARIA constants). |
+| **Software (current version)** | [10.5281/zenodo.21765202](https://doi.org/10.5281/zenodo.21765202) | From GitHub Release `v1.0.3` (full class formalization). |
 
 ## Paper version history
 

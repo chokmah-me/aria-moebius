@@ -87,7 +87,7 @@ what linearizes the bridge action.
 - **Paper concept DOI (prefer for citation):** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) — always latest PDF
 - **Paper version DOI (this PDF):** [10.5281/zenodo.21765164](https://doi.org/10.5281/zenodo.21765164) (v1.0.5)
 - **Software concept DOI:** [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939)
-- **Software version DOI:** [10.5281/zenodo.21710834](https://doi.org/10.5281/zenodo.21710834) (advances with GH releases)
+- **Software version DOI:** [10.5281/zenodo.21765202](https://doi.org/10.5281/zenodo.21765202) (v1.0.3; advances with GH releases)
 - **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases
 - **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
 - **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/) — path fragment historical; page cites concept `…468` / PDF version `…164`
@@ -119,10 +119,10 @@ Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software
   author       = {Bilar, Daniyel Yaacov},
   title        = {aria-moebius: Lean formalization and class-bridge verifier},
   year         = {2026},
-  version      = {v1.0.2},
+  version      = {v1.0.3},
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.21710834},
-  url          = {https://doi.org/10.5281/zenodo.21710834}
+  doi          = {10.5281/zenodo.21765202},
+  url          = {https://doi.org/10.5281/zenodo.21765202}
 }
 ```
 
