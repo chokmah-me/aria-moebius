@@ -12,8 +12,9 @@ Paper source freeze for deposit (you rebuild the PDF from `ARIA-Moebius-v1-REL.m
 - Removed dual draft `PAPER_ARIA_MOBIUS_DRAFT_v3.md` (REL.md is sole markdown source)
 - Prior Lean commits: full class formalization (`1ce031a`) + L1 hygiene (`a35f6b9`)
 
-**Zenodo paper version DOI:** TBD after mint under concept `…468` (supersedes `…821` / v1.0.4).  
-**ZENODO.md / CITATION.cff:** still list v1.0.4 as current until mint — then add new row / flip current (DOI guard).
+**Zenodo paper version:** [10.5281/zenodo.21765164](https://doi.org/10.5281/zenodo.21765164)
+(concept still [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468)).
+Supersedes `…821` (v1.0.4).
 
 ## 2026-07-31 -- Lean: full class bridge formalization (Thm 3.1 + Cor 3.2 + §5)
 

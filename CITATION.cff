@@ -30,11 +30,11 @@ preferred-citation:
       orcid: "https://orcid.org/0000-0002-9040-6914"
       affiliation: "Chokmah LLC"
   year: 2026
-  version: "1.0.4"
-  doi: "10.5281/zenodo.21710821"
-  url: "https://doi.org/10.5281/zenodo.21710821"
+  version: "1.0.5"
+  doi: "10.5281/zenodo.21765164"
+  url: "https://doi.org/10.5281/zenodo.21765164"
   publisher:
     name: Zenodo
   # Prefer concept DOI 10.5281/zenodo.21705468 when a reader wants "always latest".
-  # preferred-citation.doi pins this PDF version (…821).
+  # preferred-citation.doi pins this PDF version (…164).
 

@@ -3,7 +3,7 @@
 Formalization and computational checks for
 *[Mobius Bridges for the Invert-and-Affine S-box Class, with the Four ARIA
 Instantiations](ARIA-Moebius-v1-REL.md)* (D. Y. Bilar, Chokmah LLC), paper
-**v1.0.5** (source freeze; PDF rebuild and Zenodo version DOI pending deposit).
+**v1.0.5**.
 
 The Mobius Bridge of Nasr and Carlini is not specific to the AES S-box. It holds
 for every S-box of the form `L2 . Frob^j . inv . L1` with `L1`, `L2` GF(2)-affine
@@ -20,8 +20,8 @@ what a complexity claim would first require.
 
 | Path | Role |
 |---|---|
-| `ARIA-Moebius-v1-REL.md` | Paper source (v1.0.5 prep; sole markdown) |
-| `ARIA-Moebius-v1-REL.pdf` | Paper PDF (rebuild from REL.md before deposit) |
+| `ARIA-Moebius-v1-REL.md` | Paper source (v1.0.5; sole markdown) |
+| `ARIA-Moebius-v1-REL.pdf` | Paper PDF (Zenodo v1.0.5) |
 | `verify_bridge_class.py` | Exhaustive GF(2^8) checks (pure Python 3, no deps) |
 | `verify_aria_bridge.py` | Legacy pre-reciprocal verifier (superseded) |
 | `Bridge.lean` | Lean 4 formalization of the class bridge and affine invariance |
@@ -85,12 +85,12 @@ what linearizes the bridge action.
 
 - Paper: [`ARIA-Moebius-v1-REL.md`](ARIA-Moebius-v1-REL.md) / [`ARIA-Moebius-v1-REL.pdf`](ARIA-Moebius-v1-REL.pdf)
 - **Paper concept DOI (prefer for citation):** [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) — always latest PDF
-- **Paper version DOI (last deposited PDF):** [10.5281/zenodo.21710821](https://doi.org/10.5281/zenodo.21710821) (v1.0.4; superseded by v1.0.5 after next mint)
+- **Paper version DOI (this PDF):** [10.5281/zenodo.21765164](https://doi.org/10.5281/zenodo.21765164) (v1.0.5)
 - **Software concept DOI:** [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939)
 - **Software version DOI:** [10.5281/zenodo.21710834](https://doi.org/10.5281/zenodo.21710834) (advances with GH releases)
 - **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases
 - **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
-- **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/) — path fragment historical; page cites concept `…468` / PDF version `…821`
+- **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/) — path fragment historical; page cites concept `…468` / PDF version `…164`
 
 Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software DOI zip). Superseded paper DOIs and the post-mint grep guard: `ZENODO.md`, `scripts/check_doi_consistency.ps1`.
 
@@ -108,7 +108,7 @@ Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.21705468},
   url          = {https://doi.org/10.5281/zenodo.21705468},
-  note         = {Concept DOI (always latest). Prior PDF pin v1.0.4: 10.5281/zenodo.21710821; v1.0.5 version DOI after deposit}
+  note         = {Concept DOI (always latest). Pinned PDF: 10.5281/zenodo.21765164}
 }
 ```
 

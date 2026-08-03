@@ -22,7 +22,8 @@ $SupersededIds = @(
     "21705469",  # first paper mint
     "21705738",  # v1.0.1 pre-errata
     "21706741",  # errata upload; PDF self-DOI still lagged
-    "21710366"   # pre-published-ARIA-constants PDF
+    "21710366",  # pre-published-ARIA-constants PDF
+    "21710821"   # v1.0.4 published ARIA constants
 )
 
 # Paths (repo-relative, forward slashes) where superseded IDs may still appear.
@@ -33,7 +34,7 @@ $Allowlist = @(
     "SEARCH-META.html"
 )
 
-$CurrentVersionId = "21710821"
+$CurrentVersionId = "21765164"
 $ConceptId = "21705468"
 
 Set-Location $RepoRoot
