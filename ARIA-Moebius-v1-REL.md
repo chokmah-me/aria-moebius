@@ -4,9 +4,9 @@
 
 Daniyel Yaacov Bilar, Chokmah LLC, chokmah-dyb@pm.me ORCID: [0000-0002-9040-6914](https://orcid.org/0000-0002-9040-6914)
 
-<p class="hebrew-date" dir="rtl" lang="he">ט״ז בְּאָב תשפ״ו</p>
+<p class="hebrew-date" dir="rtl" lang="he">י״ט בְּאָב תשפ״ו</p>
 
-Version **1.0.5** · 31 July 2026
+Version **1.0.5** · August 03 2026
 
 Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). DOI: [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) (Zenodo concept DOI; always resolves to latest).
 

@@ -38,4 +38,4 @@ Python 3.14.4, Windows 11
     ARIA S2^-1           m,n=(7,11): 1 distinct over 255 admissible reference values s, matches offline: True
     all four variants x four exponent pairs: OK
 
-5/5 checks passed in 4.27s.
+5/5 checks passed in 3.57s.
