@@ -46,10 +46,14 @@ Deterministic apart from seeded draws of the affine maps. Pure Python 3, no
 dependencies. Exit code 0 iff every check passes. Typical runtime: a few
 seconds under CPython 3.11+ on a laptop (see results/verify_bridge_class_meta.json).
 """
+import json
 import platform
 import random
+import subprocess
 import sys
 import time
+from datetime import datetime, timezone
+from pathlib import Path
 
 MOD = 0x11B          # AES/ARIA field polynomial x^8+x^4+x^3+x+1
 SEED = 5785
@@ -321,6 +325,52 @@ def check_invariant(variants, rng):
     return ok
 
 
+def _git_commit() -> str | None:
+    try:
+        out = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=False,
+        )
+        if out.returncode == 0:
+            return out.stdout.strip() or None
+    except (OSError, subprocess.SubprocessError):
+        pass
+    return None
+
+
+def _write_run_artifacts(exit_code: int, elapsed: float) -> None:
+    """Archive stdout path + provenance meta for paper Section 6."""
+    root = Path(__file__).resolve().parent
+    results = root / "results"
+    results.mkdir(exist_ok=True)
+    out_path = results / "verify_bridge_class_out.txt"
+    meta_path = results / "verify_bridge_class_meta.json"
+    # stdout was already printed; callers may also tee. Meta always refreshed here.
+    meta = {
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "python_version": f"Python {sys.version.split()[0]}",
+        "platform": platform.platform(),
+        "git_commit": _git_commit(),
+        "paper_version_label": "1.0.5",
+        "seed": SEED,
+        "script": "verify_bridge_class.py",
+        "exit_code": exit_code,
+        "runtime_seconds": round(elapsed, 2),
+        "output_file": "results/verify_bridge_class_out.txt",
+        "note": "ARIA published A,B,a=0x63,b=0xE2; skip 510; regenerate with release tree",
+    }
+    meta_path.write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+    # Keep out.txt if present from a tee; otherwise leave a short pointer.
+    if not out_path.is_file():
+        out_path.write_text(
+            f"(re-run with stdout redirected to this file; meta at {meta_path.name})\n",
+            encoding="utf-8",
+        )
+
+
 def main():
     t0 = time.perf_counter()
     rng = random.Random(SEED)
@@ -336,8 +386,11 @@ def main():
         check_invariant(variants, rng),
     ]
     elapsed = time.perf_counter() - t0
-    print(f"\n{sum(results)}/{len(results)} checks passed in {elapsed:.2f}s.")
-    return 0 if all(results) else 1
+    n_ok = sum(results)
+    print(f"\n{n_ok}/{len(results)} checks passed in {elapsed:.2f}s.")
+    code = 0 if all(results) else 1
+    _write_run_artifacts(code, elapsed)
+    return code
 
 
 if __name__ == "__main__":

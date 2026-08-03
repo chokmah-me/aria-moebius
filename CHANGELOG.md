@@ -6,11 +6,14 @@ Paper source freeze for deposit (you rebuild the PDF from `ARIA-Moebius-v1-REL.m
 
 - Appendix **A.2** rewritten: Thm 3.1 → `class_bridge` / `class_bridge_with_key`; Cor 3.2 → `J_class_invariant`; §5 → `L1_inv_zero` / `IsBadIndex` / `bad_index_set`
 - Abstract and contributions aligned with SME greenlight formalization
-- Ref [5] Bai–Yu: LNCS vol. 8783
+- Ref [5] Bai–Yu: LNCS vol. 8783 (ISC 2013 revised selected papers; DOI `10.1007/978-3-319-27659-5_11`)
+- Ref [6] Tang et al.: DOI confirmed `10.1016/j.jss.2011.04.053` (JSS 84(10) ARIA MitM article; not `…045`)
+- Regenerated `results/verify_bridge_class_meta.json` / out on the v1.0.5 prep tree; verifier now auto-writes meta (`python_version`, `platform`, `git_commit`, `paper_version_label`)
 - Removed dual draft `PAPER_ARIA_MOBIUS_DRAFT_v3.md` (REL.md is sole markdown source)
 - Prior Lean commits: full class formalization (`1ce031a`) + L1 hygiene (`a35f6b9`)
 
-**Zenodo paper version DOI:** TBD after mint under concept `…468` (supersedes `…821` / v1.0.4).
+**Zenodo paper version DOI:** TBD after mint under concept `…468` (supersedes `…821` / v1.0.4).  
+**ZENODO.md / CITATION.cff:** still list v1.0.4 as current until mint — then add new row / flip current (DOI guard).
 
 ## 2026-07-31 -- Lean: full class bridge formalization (Thm 3.1 + Cor 3.2 + §5)
 
