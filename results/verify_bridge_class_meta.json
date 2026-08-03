@@ -1,13 +1,13 @@
 {
-  "timestamp_utc": "2026-08-03T00:08:27.473398+00:00",
+  "timestamp_utc": "2026-08-03T00:08:42.771740+00:00",
   "python_version": "Python 3.14.4",
   "platform": "Windows-11-10.0.26200-SP0",
-  "git_commit": "e6cf16937bbf64d380e362650bb2ab88b77cf0c0",
+  "git_commit": "eba7fbb484b5f0000a7e70c7439e023cf1985769",
   "paper_version_label": "1.0.5",
   "seed": 5785,
   "script": "verify_bridge_class.py",
   "exit_code": 0,
-  "runtime_seconds": 3.94,
+  "runtime_seconds": 4.27,
   "output_file": "results/verify_bridge_class_out.txt",
   "note": "ARIA published A,B,a=0x63,b=0xE2; skip 510; regenerate with release tree"
 }
