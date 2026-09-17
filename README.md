@@ -28,6 +28,7 @@ what a complexity claim would first require.
 | `AriaMobius.lean` | Lean 4, preliminaries and pre-reciprocal geometry |
 | `lakefile.toml`, `lean-toolchain`, `lake-manifest.json` | Lean **4.32.2**, Mathlib **v4.32.2** |
 | `results/` | Archived runs, build logs, axiom audit |
+| `results/con-leche-verified.md` | What `con-leche` `CHECK_EXIT=0` buys (assurance / limits) |
 | `CHANGELOG.md` | Version history, including the v2 retraction |
 
 ## Verification
@@ -54,6 +55,10 @@ lake build
 Both `AriaMobius.lean` and `Bridge.lean` build clean. Axiom set: `propext`,
 `Classical.choice`, `Quot.sound` only (no `native_decide`). See
 `results/lake_build_bridge.txt` and `results/bridge_axiom_audit.txt`.
+
+Independent kernel check: `con-leche --verified` accepted the `Bridge` export
+(`CHECK_EXIT=0`). What that buys (and does not):
+[`results/con-leche-verified.md`](results/con-leche-verified.md).
 
 **Formalized in Lean:** paper Theorem 3.1 (class bridge for every invert-and-affine
 S-box), Corollary 3.2 (class fingerprint invariance end-to-end), and §5 bad-index
