@@ -96,6 +96,7 @@ what linearizes the bridge action.
 - **GitHub Release:** https://github.com/chokmah-me/aria-moebius/releases
 - **OSF:** [osf.io/wy8db](https://osf.io/wy8db/)
 - **Catalog:** [chokmah.me/research/…](https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/) — path fragment historical; page cites concept `…468` / PDF version `…164`
+- **Full DOI history:** [ZENODO.md](ZENODO.md)
 
 Zenodo paper record = PDF alone. Source, Lean, and verifier = GitHub (+ software DOI zip). Superseded paper DOIs and the post-mint grep guard: `ZENODO.md`, `scripts/check_doi_consistency.ps1`.
 
