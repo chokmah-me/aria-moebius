@@ -1,10 +1,10 @@
 # Changelog
 
-## v1.0.4 software -- unreleased -- independent kernel check + LICENSE/CI
+## v1.0.4 software -- 2026-10-07 -- GitHub + Zenodo software
 
-GitHub Release `v1.0.4` pending. Paper stays **v1.0.5** (`10.5281/zenodo.21765164`).
-Software concept still `10.5281/zenodo.21705939`. Version DOI to be filled after mint
-(will supersede software `…202`, v1.0.3).
+GitHub Release `v1.0.4` → Zenodo software version DOI
+`10.5281/zenodo.23215647` (concept still `10.5281/zenodo.21705939`).
+Supersedes software `…202` (v1.0.3). Paper stays **v1.0.5**.
 
 - Independent kernel: `con-leche --verified` accepted the `Bridge` export
   (`CHECK_EXIT=0`, 283412 declarations, 2026-09-17). Checker pin
@@ -13,7 +13,6 @@ Software concept still `10.5281/zenodo.21705939`. Version DOI to be filled after
   `results/con-leche-verified.md`. Optional gate; not CI; NDJSON not shipped.
 - `LICENSE` CC-BY-4.0; `.github/workflows/build.yml` (`lake build` +
   `verify_bridge_class.py`)
-- Paste-ready Zenodo software metadata in `ZENODO.md` (v1.0.3 block until mint)
 
 No Lean theorem changes since v1.0.3. No paper bump.
 

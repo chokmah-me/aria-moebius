@@ -7,7 +7,7 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 | **Paper concept** | [10.5281/zenodo.21705468](https://doi.org/10.5281/zenodo.21705468) | **Stable.** Always resolves to the latest paper PDF. |
 | **Paper (current version)** | [10.5281/zenodo.21765164](https://doi.org/10.5281/zenodo.21765164) | v1.0.5; full Lean class formalization (Thm 3.1 / Cor 3.2 / §5); PDF only. |
 | **Software concept** | [10.5281/zenodo.21705939](https://doi.org/10.5281/zenodo.21705939) | Always latest software zip. |
-| **Software (current version)** | [10.5281/zenodo.21765202](https://doi.org/10.5281/zenodo.21765202) | From GitHub Release `v1.0.3` (full class formalization). |
+| **Software (current version)** | [10.5281/zenodo.23215647](https://doi.org/10.5281/zenodo.23215647) | From GitHub Release `v1.0.4` (independent kernel check). |
 
 ## Paper version history
 
@@ -28,7 +28,8 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 - **Paper catalog (current slug):** https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21765164/  
 - **Paper catalog (historical slug):** https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21705469/  
   (path fragment historical; page cites concept `…468` and current version.)  
-- **Software catalog:** https://chokmah.me/research/aria-moebius-lean-formalization-and-class-bridge-verifier-21765202/
+- **Software catalog:** https://chokmah.me/research/aria-moebius-lean-formalization-and-class-bridge-verifier-21765202/  
+  (path fragment historical; page cites software concept `…939` and current version `…647`)
 
 ## Citation
 
@@ -39,8 +40,8 @@ https://doi.org/10.5281/zenodo.21705468 (concept); https://doi.org/10.5281/zenod
 
 **Software:**
 
-Bilar, D. Y. (2026). *aria-moebius: Lean formalization and class-bridge verifier*. Zenodo.  
-https://doi.org/10.5281/zenodo.21705939 (concept)
+Bilar, D. Y. (2026). *aria-moebius: Lean formalization and class-bridge verifier* (v1.0.4). Zenodo.  
+https://doi.org/10.5281/zenodo.21705939 (concept); https://doi.org/10.5281/zenodo.23215647 (this zip)
 
 No attack complexities for ARIA are claimed.
 
@@ -61,7 +62,34 @@ pwsh -File scripts/check_doi_consistency.ps1
 
 GitHub→Zenodo webhooks can clobber description and keywords. Restore from here.
 
-### Software record 21765202 (v1.0.3)
+### Software record 23215647 (v1.0.4)
+
+**Keywords:** ARIA; block cipher; Mobius Bridge; GF(2^8); Frobenius; Lean 4; S-box; formal verification; mathlib; invert-and-affine; class bridge; fingerprint invariance; meet-in-the-middle; cryptanalysis; axiom audit; con-leche; independent kernel
+
+**Notes:** Cite the paper (concept DOI 10.5281/zenodo.21705468) first. This record is the Lean/verifier zip. Prefer software concept DOI 10.5281/zenodo.21705939 for always-latest. No attack complexities for ARIA are claimed.
+
+**Related identifiers:** paper concept 10.5281/zenodo.21705468 `isSupplementTo`; paper v1.0.5 10.5281/zenodo.21765164 `isSupplementTo`; software v1.0.3 10.5281/zenodo.21765202 `isNewVersionOf`; GitHub https://github.com/chokmah-me/aria-moebius `isSupplementedBy`; tree https://github.com/chokmah-me/aria-moebius/tree/v1.0.4 `isAlternateIdentifier`; catalog https://chokmah.me/research/aria-moebius-lean-formalization-and-class-bridge-verifier-21765202/ `isDocumentedBy`.
+
+**Description HTML:**
+
+```html
+<p>The Nasr–Carlini Möbius Bridge is not specific to the AES S-box. It holds for every S-box of the form <em>S = L<sub>2</sub> ∘ Frob<sup>j</sup> ∘ inv ∘ L<sub>1</sub></em>, with L<sub>1</sub>, L<sub>2</sub> GF(2)-affine bijections and the Frobenius exponent <em>j</em> as the only degree of freedom. ARIA instantiates four members of that class at once (S<sub>1</sub>, S<sub>2</sub>, S<sub>1</sub><sup>−1</sup>, S<sub>2</sub><sup>−1</sup> at exponents 0, 3, 0, 5). This deposit is the Lean 4 formalization and exhaustive GF(2<sup>8</sup>) Python verifier for that class identity.</p>
+<p><strong>No attack complexities for ARIA are claimed.</strong></p>
+<p>---------------------------<br><br><strong>This version (v1.0.4, 2026-10-07).</strong> <em>GitHub Release v1.0.4 zip. Lean spine unchanged from v1.0.3 (Theorem 3.1 / Corollary 3.2 / §5). Adds an independent-kernel accept of the <code>Bridge</code> export: <code>con-leche --verified</code> CHECK_EXIT=0 (283412 declarations, 2026-09-17), checker pin <code>leanprover/con-leche</code> <code>c431b1ca</code>, <code>lean4export</code> 3.1.0 / Lean 4.32.2; see <code>results/con-leche-verified.md</code>. Also ships CC-BY-4.0 LICENSE and <code>lake build</code> + Python verifier CI. Optional gate; NDJSON not in the zip. Prefer software concept DOI 10.5281/zenodo.21705939 for always-latest zip. Companion paper: 10.5281/zenodo.21705468 (concept) / 10.5281/zenodo.21765164 (v1.0.5 PDF).<br><br></em>----------------------------</p>
+<h2>TL;DRs for different audiences</h2>
+<p><strong>For the SME.</strong><br>
+Class theorem companion: the Nasr–Carlini Möbius Bridge holds for every invert-and-affine S-box S = L<sub>2</sub> ∘ Frob<sup>j</sup> ∘ inv ∘ L<sub>1</sub>, with j the only degree of freedom. This zip is the Lean 4.32.2 spine of Theorem 3.1 / Corollary 3.2 / §5 plus a five-check exhaustive GF(2<sup>8</sup>) oracle. ARIA S1, S2, S1<sup>−1</sup>, S2<sup>−1</sup> at j = 0, 3, 0, 5 with published A, B, a=0x63, b=0xE2: 0/64770 mismatches per Table 1 row. Axioms: propext / Classical.choice / Quot.sound; no sorry. Independent kernel: con-leche --verified accepted the Bridge export (CHECK_EXIT=0). No attack complexities are claimed.</p>
+<p><strong>For the interested layman.</strong><br>
+A fingerprint trick written for AES also works for ARIA’s four related S-boxes. This archive is the proof-and-check code: Lean proves the algebra, a small Python script brute-checks every byte of GF(256), and a second Lean kernel re-checked the exported proofs. Cite the paper for the claim; this DOI for the replay.</p>
+<p><strong>For the skeptic.</strong><br>
+The Python oracle is exhaustive (0/64770 per published ARIA row, seed 5785). The Lean files build with a three-axiom kernel set and no sorry. An independent verified-mode kernel (con-leche) accepted the exported Bridge environment. Paper PDF and this zip are separate Zenodo concepts. If you do not trust the claim, run <code>python verify_bridge_class.py</code> and <code>lake build</code>; the kernel check is optional and documented in <code>results/con-leche-verified.md</code>.</p>
+<p><strong>For the decision maker.</strong><br>
+A reusable, citable formal artifact for a published class identity — not an attack paper. Cite the paper concept DOI for the theorem; this software concept DOI for the verifier and Lean. Two concepts, one GitHub repo, CC BY 4.0.</p>
+<p><strong>For the funder.</strong><br>
+Small, replayable Lean + Python deposit aligned to a versioned preprint. Laptop runtime is seconds. Next cost is optional further Lean (concrete ARIA matrices), not a new campaign. Deliverables are binary: lake build clean, verifier exit 0, independent-kernel accept, DOIs pinned.</p>
+```
+
+### Software record 21765202 (v1.0.3, superseded)
 
 **Keywords:** ARIA; block cipher; Mobius Bridge; GF(2^8); Frobenius; Lean 4; S-box; formal verification; mathlib; invert-and-affine; class bridge; fingerprint invariance; meet-in-the-middle; cryptanalysis; axiom audit
 
@@ -92,9 +120,9 @@ Small, replayable Lean + Python deposit aligned to a versioned preprint. Laptop 
 
 **Keywords:** ARIA; block cipher; meet-in-the-middle; Mobius Bridge; GF(2^8); Frobenius; Lean 4; S-box; cryptanalysis; formal verification; invert-and-affine; class bridge; fingerprint invariance
 
-**Notes:** v1.0.5 is the PDF-only record. Prefer concept DOI 10.5281/zenodo.21705468 for always-latest. Software: 10.5281/zenodo.21705939 (concept) / 10.5281/zenodo.21765202 (v1.0.3). No attack complexities for ARIA are claimed. Drop inherited `custom.code:*` (must not point at another repo) and empty `dates` on PUT.
+**Notes:** v1.0.5 is the PDF-only record. Prefer concept DOI 10.5281/zenodo.21705468 for always-latest. Software: 10.5281/zenodo.21705939 (concept) / 10.5281/zenodo.23215647 (v1.0.4). No attack complexities for ARIA are claimed. Drop inherited `custom.code:*` (must not point at another repo) and empty `dates` on PUT.
 
-**Related identifiers:** 10.5281/zenodo.21710821 `isNewVersionOf`; software concept 10.5281/zenodo.21705939 `isSupplementedBy`; software v1.0.3 10.5281/zenodo.21765202 `isSupplementedBy`; GitHub https://github.com/chokmah-me/aria-moebius `isSupplementedBy` + `isAlternateIdentifier`; OSF 10.17605/OSF.IO/WY8DB and https://osf.io/wy8db/ `isIdenticalTo`; catalog https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21765164/ `isDocumentedBy`.
+**Related identifiers:** 10.5281/zenodo.21710821 `isNewVersionOf`; software concept 10.5281/zenodo.21705939 `isSupplementedBy`; software v1.0.4 10.5281/zenodo.23215647 `isSupplementedBy`; GitHub https://github.com/chokmah-me/aria-moebius `isSupplementedBy` + `isAlternateIdentifier`; OSF 10.17605/OSF.IO/WY8DB and https://osf.io/wy8db/ `isIdenticalTo`; catalog https://chokmah.me/research/mobius-bridges-for-the-invert-and-affine-s-box-class-with-th-21765164/ `isDocumentedBy`.
 
 **Description HTML:**
 
