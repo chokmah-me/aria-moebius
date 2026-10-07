@@ -8,9 +8,11 @@ states what a successful run buys — and what it does not.
 
 | Item | Value |
 |---|---|
+| Date | **2026-09-17** (log mtime; `aria-moebius` commit `d73e969` archives it) |
 | Subject | Module `Bridge` (imports `AriaMobius` and the Mathlib transitive closure needed by those proofs) |
 | Export | `lean4export` **3.1.0**, Lean **4.32.2** → NDJSON (~1.5 GB; not committed) |
-| Checker | `con-leche --verified --jobs=4` (the mode the consistency theorem is about) |
+| Checker source | [leanprover/con-leche](https://github.com/leanprover/con-leche) **`c431b1ca1b7a93486dd3e0440d3ee82abe90ccd0`** (2026-09-13; [commit](https://github.com/leanprover/con-leche/commit/c431b1ca1b7a93486dd3e0440d3ee82abe90ccd0)). No later upstream commit existed on the run date. Same pin as `catalan-sun-lean` `CON_LECHE_REV`. |
+| Checker binary | Built **2026-09-17 07:48** from that tree with **Lean 4.33.0**; used `--verified --jobs=4`. SHA-256 `261465C2E7711C463BDC0811D5228F3B16A62207B0FB7E952C1C1E3A7D79592D` (MD5 `FB39C7CC56933DBD2751A3F4116701DA`). |
 | Result | **`CHECK_EXIT=0`** — accept |
 | Accepted | **283412** declarations |
 | Timing (recorded log) | parse 17.6 s, install 72.6 s, check 198.3 s, wall ~288.5 s |
@@ -93,8 +95,8 @@ below).
 | `lake build` + axiom audit | Do the Lean files elaborate; only the three standard axioms? |
 | **`con-leche --verified` → 0** | Does an independent verified kernel accept the exported proof environment? |
 
-Reproduce (requires a built `con-leche`, `lean4export` matching Lean 4.32.2, and
-enough disk/RAM for a ~1.5 GB export):
+Reproduce (requires a built `con-leche` at **`c431b1ca`**, `lean4export` matching Lean 4.32.2, and
+enough disk/RAM for a ~1.5 GB export). The NDJSON is not in git.
 
 ```powershell
 # from aria-moebius, with LEAN_PATH from lake:
@@ -102,3 +104,5 @@ lake env path\to\lean4export Bridge > bridge.ndjson
 path\to\con-leche --verified --jobs=4 bridge.ndjson
 # expect CHECK_EXIT=0 / "accepted … declarations (--verified)"
 ```
+
+The checker binary that produced this log was compiled with Lean **4.33.0**; the *export* is Lean **4.32.2**. con-leche embeds Nat-acceleration pins for more than one toolchain. Rebuilding the checker on a different Lean version is a different binary even at the same git SHA.

@@ -57,7 +57,7 @@ Both `AriaMobius.lean` and `Bridge.lean` build clean. Axiom set: `propext`,
 `results/lake_build_bridge.txt` and `results/bridge_axiom_audit.txt`.
 
 Independent kernel check: `con-leche --verified` accepted the `Bridge` export
-(`CHECK_EXIT=0`). What that buys (and does not):
+(`CHECK_EXIT=0`; checker `c431b1ca`, 2026-09-17). What that buys (and does not):
 [`results/con-leche-verified.md`](results/con-leche-verified.md).
 
 **Formalized in Lean:** paper Theorem 3.1 (class bridge for every invert-and-affine
