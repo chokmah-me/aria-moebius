@@ -1,26 +1,30 @@
 # AGENTS.md — aria-moebius
 
-## What this is
-Lean 4 formalization and exhaustive GF(256) Python verifier for the invert-and-affine Mobius Bridge class identity. ARIA instantiates four members of that class. No ARIA attack complexities are claimed.
+Lean 4 formalization and exhaustive GF(256) Python verifier for the invert-and-affine Möbius Bridge class identity. ARIA instantiates four members of that class.
 
-## Layout (top level)
-- `ARIA-Moebius-v1-REL.md`
-- `ARIA-Moebius-v1-REL.pdf`
-- `AriaMobius.lean`
-- `Bridge.lean`
-- `CHANGELOG.md`
-- `CITATION.cff`
-- `LICENSE`
-- `README.md`
-- `SEARCH-META.html`
-- `ZENODO.md`
+**No ARIA attack complexities are claimed.**
+
+## Commands
+
+```powershell
+python verify_bridge_class.py
+# exit 0 iff all five checks pass
+
+lake exe cache get
+lake build
+```
+
+Toolchain: Lean **4.32.2** / Mathlib **v4.32.2** (`lakefile.toml`, `lean-toolchain`). Axiom set: `propext`, `Classical.choice`, `Quot.sound` only (no `native_decide`).
 
 ## Work rules
-- Work from the README first; it is the canonical description of purpose, layout, and any build or verify commands.
-- Do not change verdicts, locked data tables, or published artifacts without the user's explicit word.
-- Keep changes small and receipt-backed: name the commit or artifact a claim rests on.
 
-## Canonical docs
-- `README.md` — purpose, usage, and status.
-- `CITATION.cff` — how to cite the associated paper/record.
-- `LICENSE` — terms of use.
+- Exhaustive ARIA Table 1 checks stay in Python. Lean covers Theorem 3.1, Corollary 3.2, and §5 bad-index location.
+- `verify_aria_bridge.py` is legacy (pre-reciprocal). Do not treat it as the live verifier.
+- Do not change locked `results/` receipts or published paper artifacts without the user's word.
+
+## Pointers
+
+- `README.md` — paper ↔ Lean map, five Python checks
+- `ARIA-Moebius-v1-REL.md` — paper source
+- `results/con-leche-verified.md` — what `con-leche --verified` buys
+- `CITATION.cff` / `ZENODO.md` — cite / DOI map
